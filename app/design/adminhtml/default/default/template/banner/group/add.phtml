@@ -1,0 +1,16 @@
+<div class="content-header">
+    <table cellspacing="0">
+        <tr>
+            <td style="width:50%;"><h3 class="icon-head head-blog"><?php echo Mage::helper('adminhtml')->__('Banner Manager') ?></h3></td>
+            <td class="a-right">
+                <?php echo $this->getAddNewButtonHtml() ?>
+            </td>
+        </tr>
+    </table>
+</div>
+<div>
+    <?php echo $this->getFormHtml() ?>
+</div>
+<script type="text/javascript">
+    var banner_form = new varienForm('banner_group_form');
+</script>
