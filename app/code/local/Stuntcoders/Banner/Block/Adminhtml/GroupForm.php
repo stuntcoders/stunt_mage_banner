@@ -21,6 +21,8 @@ class Stuntcoders_Banner_Block_Adminhtml_GroupForm extends Mage_Adminhtml_Block_
         );
 
         $this->setChild('form', $this->getLayout()->createBlock('stuntcoders_banner/adminhtml_group_form'));
+
+        $this->setChild('banners', $this->getLayout()->createBlock('stuntcoders_banner/adminhtml_group_banners'));
     }
 
     public function getAddNewButtonHtml()
@@ -31,5 +33,10 @@ class Stuntcoders_Banner_Block_Adminhtml_GroupForm extends Mage_Adminhtml_Block_
     public function getFormHtml()
     {
         return $this->getChildHtml('form');
+    }
+
+    public function getBannersHtml()
+    {
+        return $this->getChildHtml('banners');
     }
 }
