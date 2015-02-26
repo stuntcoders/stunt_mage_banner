@@ -58,6 +58,11 @@ class Stuntcoders_Banner_Block_Adminhtml_Banner_Form extends Mage_Adminhtml_Bloc
             'name' => 'image',
         ));
 
+        $fieldset->addField('sort_order', 'text', array(
+            'label' => Mage::helper('stuntcoders_banner')->__('Sort Order'),
+            'name' => 'sort_order',
+        ));
+
         $form->setValues($data);
 
         $form->setUseContainer(true);

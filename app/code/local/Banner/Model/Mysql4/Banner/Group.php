@@ -24,7 +24,8 @@ class Stuntcoders_Banner_Model_Mysql4_Banner_Group extends Mage_Core_Model_Mysql
     {
         $select = $this->_getReadAdapter()->select()
             ->from($this->getTable('stuntcoders_banner/banner'))
-            ->where('group_id = ?', $id);
+            ->where('group_id = ?', $id)
+            ->order('sort_order');
 
         return $this->_getReadAdapter()->fetchAll($select);
     }
