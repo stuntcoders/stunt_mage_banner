@@ -38,27 +38,14 @@ class Stuntcoders_Banner_BannerController extends Mage_Adminhtml_Controller_acti
         if ($postData = $this->getRequest()->getPost()) {
             try {
                 $bannerModel = Mage::getModel('stuntcoders_banner/banner');
-                $bannerModel->setUrl($postData['url'])
-                    ->setCode($postData['code']);
-
-                if (!empty($postData['heading'])) {
-                    $bannerModel->setHeading($postData['heading']);
-                }
-
-                if (!empty($postData['text'])) {
-                    $bannerModel->setText($postData['text']);
-                }
-
-                if (!empty($postData['group_id'])) {
-                    $bannerModel->setGroupId($postData['group_id']);
-                }
-
-                if (!empty($postData['image']['delete'])) {
-                    $bannerModel->setImage('');
-                }
+                $bannerModel->setData($postData);
 
                 if ($imageName = $this->_uploadImage()) {
                     $bannerModel->setImage($imageName);
+                }
+
+                if (!empty($postData['image']['delete'])) {
+                    $bannerModel->setImage(null);
                 }
 
                 if ($this->getRequest()->getParam('id')) {
@@ -134,31 +121,28 @@ class Stuntcoders_Banner_BannerController extends Mage_Adminhtml_Controller_acti
 
     private function _uploadImage()
     {
-        if (isset($_FILES['image']['name']) and (file_exists($_FILES['image']['tmp_name']))) {
+        if (!isset($_FILES['image']['name']) || !file_exists($_FILES['image']['tmp_name'])) {
+            return false;
+        }
 
-            try {
-                $uploader = new Varien_File_Uploader('image');
-                $uploader->setAllowedExtensions(array('jpg','jpeg','gif','png'));
-                $uploader->setAllowRenameFiles(false);
-                $uploader->setFilesDispersion(false);
+        try {
+            $uploader = new Varien_File_Uploader('image');
+            $uploader->setAllowedExtensions(array('jpg','jpeg','gif','png'));
 
-                $path = Mage::getBaseDir('media') . DS . 'banner' . DS;
+            $path = Mage::getBaseDir('media') . DS . 'banner' . DS;
 
-                if (!file_exists($path)) {
-                    mkdir($path, 0755, true);
-                }
-
-                $imageName = strtolower(str_replace(' ', '-', $_FILES['image']['name']));
-
-                $uploader->save($path, $imageName);
-
-                return Mage::getBaseUrl('media') . 'banner/' . $imageName;
-
-            } catch(Exception $e) {
-                return null;
+            if (!file_exists($path)) {
+                mkdir($path, 0755, true);
             }
-        } else {
-            return null;
+
+            $imageName = strtolower(str_replace(' ', '-', $_FILES['image']['name']));
+
+            $uploader->save($path, $imageName);
+
+            return Mage::getBaseUrl('media') . 'banner/' . $imageName;
+
+        } catch(Exception $e) {
+            return false;
         }
     }
 }
