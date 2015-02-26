@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file. This projec
 
 ### CHANGED:
 - Refactored banner controller
+- Allow setting banner sort order from banner group edit page
 
 ## 1.0.0 — 2015-02-25
 ### ADDED:
