@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file. This projec
 ### CHANGED:
 - Move module under proper namespace
 - Use default admin route
+- Update banner template
 
 ## 1.1.0 — 2015-02-26
 ### ADDED:

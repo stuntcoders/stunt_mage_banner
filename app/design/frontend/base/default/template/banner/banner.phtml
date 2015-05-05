@@ -1,24 +1,9 @@
-<?php $bannerTitle = $this->getTitle(); ?>
-<?php $bannerText = $this->getText(); ?>
 <?php $bannerImage = $this->getBannerImage(); ?>
-
 <div class="banner-wrapper">
-    <?php
-    if ($bannerImage) {
-        echo "<a href='{$this->getBannerUrl()}' style='background-image: url({$bannerImage})'>";
-    } else {
-        echo "<a href='{$this->getBannerUrl()}'>";
-    }
-    ?>
-        <div class="banner <?php echo $bannerImage ? 'image' : ''; ?>">
-            <?php
-            if ($bannerTitle) {
-                echo "<p class='title'>" . $bannerTitle . "</p>";
-            }
-            if ($bannerText) {
-                echo "<p class='subtitle'>" . $bannerText . "</p>";
-            }
-            ?>
+    <a href="<?php echo $this->getBannerUrl(); ?>" <?php echo empty($bannerImage) ? '' : $bannerImage; ?>>
+        <div class="banner <?php echo $bannerImage ? 'banner-image' : ''; ?>">
+            <p class='banenr-title'><?php echo $this->getTitle(); ?> </p>
+            <p class='banner-content'><?php echo $this->getText(); ?></p>
         </div>
     </a>
 </div>
