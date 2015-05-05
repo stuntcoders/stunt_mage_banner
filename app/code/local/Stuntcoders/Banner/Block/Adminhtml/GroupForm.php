@@ -6,7 +6,7 @@ class Stuntcoders_Banner_Block_Adminhtml_GroupForm extends Mage_Adminhtml_Block_
     {
         $this->_headerText = Mage::helper('stuntcoders_banner')->__('Banner Group Manager');;
         parent::__construct();
-        $this->setTemplate('banner/group/add.phtml');
+        $this->setTemplate('stuntcoders/banner/group/add.phtml');
     }
 
     protected function _prepareLayout()

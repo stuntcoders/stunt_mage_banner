@@ -6,7 +6,7 @@ class Stuntcoders_Banner_Block_Adminhtml_Group extends Mage_Adminhtml_Block_Widg
     {
         $this->_headerText = Mage::helper('stuntcoders_banner')->__('Banner Group Manager');
         parent::__construct();
-        $this->setTemplate('banner/group/groups.phtml');
+        $this->setTemplate('stuntcoders/banner/group/groups.phtml');
     }
 
     protected function _prepareLayout()

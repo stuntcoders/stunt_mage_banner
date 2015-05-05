@@ -7,7 +7,7 @@ class Stuntcoders_Banner_Block_Adminhtml_BannerForm extends Mage_Adminhtml_Block
     {
         $this->_headerText = Mage::helper('stuntcoders_banner')->__('Banner Manager');;
         parent::__construct();
-        $this->setTemplate('banner/add.phtml');
+        $this->setTemplate('stuntcoders/banner/add.phtml');
     }
 
     protected function _prepareLayout()
