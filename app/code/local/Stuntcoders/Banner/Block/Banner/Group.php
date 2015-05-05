@@ -5,8 +5,6 @@ class Stuntcoders_Banner_Block_Banner_Group extends Mage_Core_Block_Template
     public function __construct()
     {
         $this->setTemplate('stuntcoders/banner/group.phtml');
-        $this->setCode('homepage-banners');
-        //$this->setId("1");
     }
 
     public function getBanners()
