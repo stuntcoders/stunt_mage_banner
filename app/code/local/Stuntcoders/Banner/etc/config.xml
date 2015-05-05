@@ -7,13 +7,13 @@
     </modules>
     <admin>
         <routers>
-            <banner>
-                <use>admin</use>
+            <adminhtml>
                 <args>
-                    <module>Stuntcoders_Banner</module>
-                    <frontName>banner</frontName>
+                    <modules>
+                        <Stuntcoders_Banner before="Mage_Adminhtml">Stuntcoders_Banner_Adminhtml</Stuntcoders_Banner>
+                    </modules>
                 </args>
-            </banner>
+            </adminhtml>
         </routers>
     </admin>
     <global>
@@ -74,4 +74,5 @@
             </design>
         </admin>
     </stores>
+
 </config>

@@ -1,6 +1,6 @@
 <?php
 
-class Stuntcoders_Banner_Banner_GroupController extends Mage_Adminhtml_Controller_action
+class Stuntcoders_Banner_Adminhtml_Banner_GroupController extends Mage_Adminhtml_Controller_action
 {
     protected function _initAction()
     {

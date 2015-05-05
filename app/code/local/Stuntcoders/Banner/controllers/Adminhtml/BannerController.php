@@ -1,8 +1,7 @@
 <?php
 
-class Stuntcoders_Banner_BannerController extends Mage_Adminhtml_Controller_action
+class Stuntcoders_Banner_Adminhtml_BannerController extends Mage_Adminhtml_Controller_action
 {
-
     protected function _initAction()
     {
         $this->loadLayout();
