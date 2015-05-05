@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file. This projec
 - Move module under proper namespace
 - Use default admin route
 - Update banner template
+- Prevent errors when banner can not be loaded
 
 ## 1.1.0 — 2015-02-26
 ### ADDED:

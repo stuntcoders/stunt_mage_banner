@@ -47,10 +47,11 @@ class Stuntcoders_Banner_Block_Banner extends Mage_Core_Block_Template
 
     protected function _loadBanner()
     {
+        $this->setBanner(Mage::getModel('stuntcoders_banner/banner'));
         if ($this->getId()) {
-            $this->setBanner(Mage::getModel('stuntcoders_banner/banner')->load($this->getId()));
+            $this->getBanner()->load($this->getId());
         } else if ($this->getCode()) {
-            $this->setBanner(Mage::getModel('stuntcoders_banner/banner')->load($this->getCode(), 'code'));
+            $this->getBanner()->load($this->getCode(), 'code');
         }
 
         return $this;
