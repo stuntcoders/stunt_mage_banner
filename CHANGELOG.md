@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file. This projec
 ## Unreleased:
 ### ADDED:
 - Adminhtml layout updates
+- Banner group block
 
 ### CHANGED:
 - Move module under proper namespace

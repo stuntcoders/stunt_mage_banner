@@ -1,0 +1,12 @@
+<div class="banner-wrapper">
+    <?php foreach ($this->getBanners() as $banner): ?>
+        <div class="banner-group-wrapper">
+            <a href="<?php echo $banner['url']; ?>" <?php echo empty($banner['image']) ? '' : $banner['image']; ?>>
+                <div class="banner <?php echo $banner['image'] ? 'banner-image' : ''; ?>">
+                    <p class='banenr-title'><?php echo $banner['heading']; ?> </p>
+                    <p class='banner-content'><?php echo $banner['text']; ?></p>
+                </div>
+            </a>
+        </div>
+    <?php endforeach; ?>
+</div>
