@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file. This projec
 ### ADDED:
 - Adminhtml layout updates
 - Banner group block
+- Banner group name to banner grid
 
 ### CHANGED:
 - Move module under proper namespace
