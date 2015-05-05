@@ -1,6 +1,7 @@
 app/code/local/Stuntcoders/Banner                                            app/code/local/Stuntcoders/Banner
 
 app/design/adminhtml/default/default/layout/stuntcoders/banner.xml           app/design/adminhtml/default/default/layout/stuntcoders/banner.xml
-app/design/adminhtml/default/default/template/banner                         app/design/adminhtml/default/default/template/banner
+app/design/adminhtml/default/default/template/stuntcoders/banner             app/design/adminhtml/default/default/template/stuntcoders/banner
+app/design/frontend/base/default/template/stuntcoders/banner                 app/design/frontend/base/default/template/stuntcoders/banner
 
 app/etc/modules/*                                                            app/etc/modules/
