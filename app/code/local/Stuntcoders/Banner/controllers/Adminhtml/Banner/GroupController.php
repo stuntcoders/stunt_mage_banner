@@ -36,12 +36,15 @@ class Stuntcoders_Banner_Adminhtml_Banner_GroupController extends Mage_Adminhtml
 
                 $bannerGroupModel->setCode($postData['code'])->setName($postData['name'])->save();
 
-                $bannerPositions = json_decode($postData['banner_positions'], true);
-                foreach ($bannerPositions as $bannerId => $bannerPosition) {
-                    Mage::getModel('stuntcoders_banner/banner')
-                        ->load($bannerId)
-                        ->setSortOrder((int) $bannerPosition)
-                        ->save();
+                if (!empty($postData['banner_positions'])) {
+                    Mage::log($postData['banner_positions']);
+                    $bannerPositions = json_decode($postData['banner_positions'], true);
+                    foreach ($bannerPositions as $bannerId => $bannerPosition) {
+                        Mage::getModel('stuntcoders_banner/banner')
+                            ->load($bannerId)
+                            ->setSortOrder((int) $bannerPosition)
+                            ->save();
+                    }
                 }
 
                 Mage::getSingleton('adminhtml/session')->addSuccess(

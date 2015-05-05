@@ -4,9 +4,7 @@ class Stuntcoders_Banner_Block_Banner extends Mage_Core_Block_Template
 {
     public function __construct()
     {
-        if (!$this->getTemplate()) {
-            $this->setTemplate('banner/banner.phtml');
-        }
+        $this->setTemplate('stuntcoders/banner/banner.phtml');
     }
 
     public function getBannerUrl()
