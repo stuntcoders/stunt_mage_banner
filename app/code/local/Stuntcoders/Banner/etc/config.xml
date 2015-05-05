@@ -74,5 +74,13 @@
             </design>
         </admin>
     </stores>
-
+    <adminhtml>
+        <layout>
+            <updates>
+                <stuntcoders_banner>
+                    <file>stuntcoders/banner.xml</file>
+                </stuntcoders_banner>
+            </updates>
+        </layout>
+    </adminhtml>
 </config>

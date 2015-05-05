@@ -1,6 +1,6 @@
 <?php
 
-class Stuntcoders_Banner_Adminhtml_Banner_GroupController extends Mage_Adminhtml_Controller_action
+class Stuntcoders_Banner_Adminhtml_Banner_GroupController extends Mage_Adminhtml_Controller_Action
 {
     protected function _initAction()
     {
@@ -16,20 +16,12 @@ class Stuntcoders_Banner_Adminhtml_Banner_GroupController extends Mage_Adminhtml
 
     public function indexAction()
     {
-        $this->_initAction();
-
-        $this->_addContent($this->getLayout()->createBlock('stuntcoders_banner/adminhtml_group'));
-
-        $this->renderLayout();
+        $this->_initAction()->renderLayout();
     }
 
     public function addAction()
     {
-        $this->_initAction();
-
-        $this->_addContent($this->getLayout()->createBlock('stuntcoders_banner/adminhtml_groupForm'));
-
-        $this->renderLayout();
+        $this->_initAction()->renderLayout();
     }
 
     public function saveAction()
