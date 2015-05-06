@@ -1,6 +1,6 @@
 <?php
 
-class Stuntcoders_Banner_Model_Mysql4_Banner extends Mage_Core_Model_Mysql4_Abstract
+class Stuntcoders_Banner_Model_Resource_Banner extends Mage_Core_Model_Resource_Db_Abstract
 {
     protected function _construct()
     {
