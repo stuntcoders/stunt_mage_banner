@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file. This projec
 - Adminhtml layout updates
 - Banner group block
 - Banner group name to banner grid
+- Allow banner to be opened in new tab
 
 ### CHANGED:
 - Move module under proper namespace

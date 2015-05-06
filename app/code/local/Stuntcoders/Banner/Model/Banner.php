@@ -16,6 +16,11 @@ class Stuntcoders_Banner_Model_Banner extends Mage_Core_Model_Abstract
         return Mage::getBaseUrl('media') . $imagePath;
     }
 
+    public function getOpenInNewTab()
+    {
+        return (bool) $this->getData('open_in_new_tab');
+    }
+
     public function getBannersByGroupCode($code)
     {
         $bannerGroupModel = Mage::getModel('stuntcoders_banner/banner_group');

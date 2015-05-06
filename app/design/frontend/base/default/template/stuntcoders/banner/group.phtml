@@ -2,7 +2,8 @@
     <?php foreach ($this->getBanners() as $banner): ?>
         <?php $bannerImage = $banner->getImage(); ?>
         <div class="banner-group-wrapper">
-            <a href="<?php echo $banner->getUrl(); ?>" <?php echo empty($bannerImage) ? '' : $bannerImage; ?>>
+            <a href="<?php echo $banner->getUrl(); ?>" <?php echo empty($bannerImage) ? '' : $bannerImage; ?>
+                <?php echo $banner->getOpenInNewTab() ?  'target="_blank"' : ''; ?>>
                 <div class="banner <?php echo $bannerImage ? 'banner-image' : ''; ?>">
                     <p class='banenr-title'><?php echo $banner->getHeading(); ?> </p>
                     <p class='banner-content'><?php echo $banner->getText();; ?></p>

@@ -43,6 +43,15 @@ class Stuntcoders_Banner_Block_Banner extends Mage_Core_Block_Template
         return $this->getBanner()->getHeading();
     }
 
+    public function canOpenInNewTab()
+    {
+        if (!$this->hasBanner()) {
+            $this->_loadBanner();
+        }
+
+        return $this->getBanner()->getOpenInNewTab();
+    }
+
     protected function _loadBanner()
     {
         $this->setBanner(Mage::getModel('stuntcoders_banner/banner'));

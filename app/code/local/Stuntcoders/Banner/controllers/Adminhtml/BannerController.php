@@ -43,7 +43,7 @@ class Stuntcoders_Banner_Adminhtml_BannerController extends Mage_Adminhtml_Contr
                     $bannerModel->setId($this->getRequest()->getParam('id'));
                 }
 
-                $bannerModel->save();
+                $bannerModel->setOpenInNewTab(!empty($postData['open_in_new_tab']))->save();
 
                 Mage::getSingleton('adminhtml/session')->addSuccess(
                     Mage::helper('stuntcoders_banner')->__('Item was successfully saved')

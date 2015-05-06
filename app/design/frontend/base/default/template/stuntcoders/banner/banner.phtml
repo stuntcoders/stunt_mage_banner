@@ -1,6 +1,7 @@
 <?php $bannerImage = $this->getBannerImage(); ?>
 <div class="banner-wrapper">
-    <a href="<?php echo $this->getBannerUrl(); ?>" <?php echo empty($bannerImage) ? '' : $bannerImage; ?>>
+    <a href="<?php echo $this->getBannerUrl(); ?>" <?php echo empty($bannerImage) ? '' : $bannerImage; ?>
+        <?php echo $this->canOpenInNewTab() ?  'target="_blank"' : ''; ?>>
         <div class="banner <?php echo $bannerImage ? 'banner-image' : ''; ?>">
             <p class='banenr-title'><?php echo $this->getTitle(); ?> </p>
             <p class='banner-content'><?php echo $this->getText(); ?></p>
