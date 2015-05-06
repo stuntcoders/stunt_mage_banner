@@ -12,6 +12,7 @@ All notable changes to this project will be documented in this file. This projec
 - Use default admin route
 - Update banner template
 - Prevent errors when banner can not be loaded
+- Use image path to save an image
 
 ## 1.1.0 — 2015-02-26
 ### ADDED:

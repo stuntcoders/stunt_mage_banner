@@ -130,7 +130,7 @@ class Stuntcoders_Banner_Adminhtml_BannerController extends Mage_Adminhtml_Contr
 
             $uploader->save($path, $imageName);
 
-            return Mage::getBaseUrl('media') . 'banner/' . $imageName;
+            return 'banner/' . $imageName;
 
         } catch(Exception $e) {
             return false;
