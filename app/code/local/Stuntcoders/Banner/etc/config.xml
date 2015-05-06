@@ -2,28 +2,28 @@
 <config>
     <modules>
         <Stuntcoders_Banner>
-            <version>1.1.0</version>
+            <version>1.2.0</version>
         </Stuntcoders_Banner>
     </modules>
     <admin>
         <routers>
-            <banner>
-                <use>admin</use>
+            <adminhtml>
                 <args>
-                    <module>Stuntcoders_Banner</module>
-                    <frontName>banner</frontName>
+                    <modules>
+                        <Stuntcoders_Banner before="Mage_Adminhtml">Stuntcoders_Banner_Adminhtml</Stuntcoders_Banner>
+                    </modules>
                 </args>
-            </banner>
+            </adminhtml>
         </routers>
     </admin>
     <global>
         <models>
             <stuntcoders_banner>
                 <class>Stuntcoders_Banner_Model</class>
-                <resourceModel>stuntcoders_banner_mysql4</resourceModel>
+                <resourceModel>stuntcoders_banner_resource</resourceModel>
             </stuntcoders_banner>
-            <stuntcoders_banner_mysql4>
-                <class>Stuntcoders_Banner_Model_Mysql4</class>
+            <stuntcoders_banner_resource>
+                <class>Stuntcoders_Banner_Model_Resource</class>
                 <entities>
                     <banner>
                         <table>stuntcoders_banner</table>
@@ -32,7 +32,7 @@
                         <table>stuntcoders_banner_group</table>
                     </banner_group>
                 </entities>
-            </stuntcoders_banner_mysql4>
+            </stuntcoders_banner_resource>
         </models>
         <blocks>
             <stuntcoders_banner>
@@ -74,4 +74,13 @@
             </design>
         </admin>
     </stores>
+    <adminhtml>
+        <layout>
+            <updates>
+                <stuntcoders_banner>
+                    <file>stuntcoders/banner.xml</file>
+                </stuntcoders_banner>
+            </updates>
+        </layout>
+    </adminhtml>
 </config>

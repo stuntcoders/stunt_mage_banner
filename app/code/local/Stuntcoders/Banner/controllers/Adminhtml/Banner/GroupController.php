@@ -1,6 +1,6 @@
 <?php
 
-class Stuntcoders_Banner_Banner_GroupController extends Mage_Adminhtml_Controller_action
+class Stuntcoders_Banner_Adminhtml_Banner_GroupController extends Mage_Adminhtml_Controller_Action
 {
     protected function _initAction()
     {
@@ -16,20 +16,12 @@ class Stuntcoders_Banner_Banner_GroupController extends Mage_Adminhtml_Controlle
 
     public function indexAction()
     {
-        $this->_initAction();
-
-        $this->_addContent($this->getLayout()->createBlock('stuntcoders_banner/adminhtml_group'));
-
-        $this->renderLayout();
+        $this->_initAction()->renderLayout();
     }
 
     public function addAction()
     {
-        $this->_initAction();
-
-        $this->_addContent($this->getLayout()->createBlock('stuntcoders_banner/adminhtml_groupForm'));
-
-        $this->renderLayout();
+        $this->_initAction()->renderLayout();
     }
 
     public function saveAction()
@@ -44,12 +36,15 @@ class Stuntcoders_Banner_Banner_GroupController extends Mage_Adminhtml_Controlle
 
                 $bannerGroupModel->setCode($postData['code'])->setName($postData['name'])->save();
 
-                $bannerPositions = json_decode($postData['banner_positions'], true);
-                foreach ($bannerPositions as $bannerId => $bannerPosition) {
-                    Mage::getModel('stuntcoders_banner/banner')
-                        ->load($bannerId)
-                        ->setSortOrder((int) $bannerPosition)
-                        ->save();
+                if (!empty($postData['banner_positions'])) {
+                    Mage::log($postData['banner_positions']);
+                    $bannerPositions = json_decode($postData['banner_positions'], true);
+                    foreach ($bannerPositions as $bannerId => $bannerPosition) {
+                        Mage::getModel('stuntcoders_banner/banner')
+                            ->load($bannerId)
+                            ->setSortOrder((int) $bannerPosition)
+                            ->save();
+                    }
                 }
 
                 Mage::getSingleton('adminhtml/session')->addSuccess(

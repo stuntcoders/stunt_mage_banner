@@ -1,8 +1,7 @@
 <?php
 
-class Stuntcoders_Banner_BannerController extends Mage_Adminhtml_Controller_action
+class Stuntcoders_Banner_Adminhtml_BannerController extends Mage_Adminhtml_Controller_Action
 {
-
     protected function _initAction()
     {
         $this->loadLayout();
@@ -17,20 +16,12 @@ class Stuntcoders_Banner_BannerController extends Mage_Adminhtml_Controller_acti
 
     public function indexAction()
     {
-        $this->_initAction();
-
-        $this->_addContent($this->getLayout()->createBlock('stuntcoders_banner/adminhtml_banner'));
-
-        $this->renderLayout();
+        $this->_initAction()->renderLayout();
     }
 
     public function addAction()
     {
-        $this->_initAction();
-
-        $this->_addContent($this->getLayout()->createBlock('stuntcoders_banner/adminhtml_bannerForm'));
-
-        $this->renderLayout();
+        $this->_initAction()->renderLayout();
     }
 
     public function saveAction()
@@ -38,7 +29,19 @@ class Stuntcoders_Banner_BannerController extends Mage_Adminhtml_Controller_acti
         if ($postData = $this->getRequest()->getPost()) {
             try {
                 $bannerModel = Mage::getModel('stuntcoders_banner/banner');
-                $bannerModel->setData($postData);
+
+                if ($this->getRequest()->getParam('id')) {
+                    $bannerModel->load($this->getRequest()->getParam('id'));
+
+                }
+
+                $bannerModel->setCode($postData['code'])
+                    ->setUrl($postData['url'])
+                    ->setGroupId($postData['group_id'])
+                    ->setText($postData['text'])
+                    ->setHeading($postData['heading'])
+                    ->setSortOrder($postData['sort_order'])
+                    ->setOpenInNewTab(!empty($postData['open_in_new_tab']));
 
                 if ($imageName = $this->_uploadImage()) {
                     $bannerModel->setImage($imageName);
@@ -48,15 +51,12 @@ class Stuntcoders_Banner_BannerController extends Mage_Adminhtml_Controller_acti
                     $bannerModel->setImage(null);
                 }
 
-                if ($this->getRequest()->getParam('id')) {
-                    $bannerModel->setId($this->getRequest()->getParam('id'));
-                }
-
                 $bannerModel->save();
 
                 Mage::getSingleton('adminhtml/session')->addSuccess(
                     Mage::helper('stuntcoders_banner')->__('Item was successfully saved')
                 );
+
                 $this->_redirect('*/*/');
             } catch (Exception $e) {
                 $this->_redirectReferer('*/*/');
@@ -139,7 +139,7 @@ class Stuntcoders_Banner_BannerController extends Mage_Adminhtml_Controller_acti
 
             $uploader->save($path, $imageName);
 
-            return Mage::getBaseUrl('media') . 'banner/' . $imageName;
+            return 'banner/' . $imageName;
 
         } catch(Exception $e) {
             return false;

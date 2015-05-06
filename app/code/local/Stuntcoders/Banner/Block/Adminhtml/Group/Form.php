@@ -37,6 +37,11 @@ class Stuntcoders_Banner_Block_Adminhtml_Group_Form extends Mage_Adminhtml_Block
             'name' => 'name',
         ));
 
+        $fieldset->addField('banner_positions', 'hidden', array(
+            'required' => true,
+            'name' => 'banner_positions',
+        ));
+
         $form->setValues($data);
 
         $form->setUseContainer(true);

@@ -13,7 +13,13 @@ class Stuntcoders_Banner_Block_Adminhtml_Banner_Grid extends Mage_Adminhtml_Bloc
 
     protected function _prepareCollection()
     {
-        $this->setCollection(Mage::getModel('stuntcoders_banner/banner')->getCollection());
+        $collection = Mage::getModel('stuntcoders_banner/banner')->getCollection()->join(
+            array('group_table' => 'stuntcoders_banner/banner_group'),
+            'group_table.group_id = main_table.group_id',
+            array('banner_group_name' => 'name')
+        );
+
+        $this->setCollection($collection);
         return parent::_prepareCollection();
     }
 
@@ -36,6 +42,14 @@ class Stuntcoders_Banner_Block_Adminhtml_Banner_Grid extends Mage_Adminhtml_Bloc
             'header'    => Mage::helper('stuntcoders_banner')->__('Title'),
             'align'     =>'left',
             'index'     => 'heading',
+        ));
+
+        $this->addColumn('banner_group_name', array(
+            'header'    => Mage::helper('stuntcoders_banner')->__('Group'),
+            'align'     =>'left',
+            'index'     => 'banner_group_name',
+            'type'      => 'options',
+            'options' => Mage::getModel('stuntcoders_banner/banner_group')->getGroupOptionValues()
         ));
 
         $this->addColumn('url', array(

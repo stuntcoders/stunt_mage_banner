@@ -27,6 +27,16 @@ class Stuntcoders_Banner_Model_Banner_Group extends Mage_Core_Model_Abstract
         return $groups;
     }
 
+    public function getGroupOptionValues()
+    {
+        $groups = array();
+        foreach ($this->getCollection() as $group) {
+            $groups[$group->getName()] = $group->getName();
+        }
+
+        return $groups;
+    }
+
     public function getIdByCode($code)
     {
         return $this->_getResource()->getIdByCode($code);

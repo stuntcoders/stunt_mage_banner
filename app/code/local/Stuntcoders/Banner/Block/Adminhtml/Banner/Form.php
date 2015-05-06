@@ -58,6 +58,12 @@ class Stuntcoders_Banner_Block_Adminhtml_Banner_Form extends Mage_Adminhtml_Bloc
             'name' => 'image',
         ));
 
+        $fieldset->addField('open_in_new_tab', 'checkbox', array(
+            'label'    => Mage::helper('stuntcoders_banner')->__('Open in new tab'),
+            'name'     => 'open_in_new_tab',
+            'onclick'   => 'this.value = this.checked ? 1 : 0;',
+        ))->setIsChecked(!empty($data['open_in_new_tab']));
+
         $fieldset->addField('sort_order', 'text', array(
             'label' => Mage::helper('stuntcoders_banner')->__('Sort Order'),
             'name' => 'sort_order',

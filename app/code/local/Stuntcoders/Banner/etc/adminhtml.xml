@@ -10,12 +10,12 @@
                         <manage_banners translate="title" module="stuntcoders_banner">
                             <title>Manage Banners</title>
                             <sort_order>0</sort_order>
-                            <action>banner/banner/index</action>
+                            <action>adminhtml/banner/index</action>
                         </manage_banners>
                         <manage_banner_groups translate="title" module="stuntcoders_banner">
                             <title>Manage Banner Groups</title>
                             <sort_order>1</sort_order>
-                            <action>banner/banner_group/index</action>
+                            <action>adminhtml/banner_group/index</action>
                         </manage_banner_groups>
                     </children>
                 </banner>
