@@ -20,7 +20,13 @@ class Stuntcoders_Banner_Model_Banner extends Mage_Core_Model_Abstract
     {
         $bannerGroupModel = Mage::getModel('stuntcoders_banner/banner_group');
         $groupId = $bannerGroupModel->getIdByCode($code);
+        $banners = $bannerGroupModel->load($groupId)->getBanners();
+        $bannerCollection = new Varien_Data_Collection();
 
-        return $bannerGroupModel->load($groupId)->getBanners();
+        foreach ($banners as $banner) {
+            $bannerCollection->addItem(Mage::getModel('stuntcoders_banner/banner')->load($banner['banner_id']));
+        }
+
+        return $bannerCollection;
     }
 }
