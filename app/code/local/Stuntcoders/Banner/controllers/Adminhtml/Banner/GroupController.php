@@ -86,4 +86,9 @@ class Stuntcoders_Banner_Adminhtml_Banner_GroupController extends Mage_Adminhtml
 
         $this->_redirect('*/*/index');
     }
+
+    protected function _isAllowed()
+    {
+        return Mage::getSingleton('admin/session')->isAllowed('cms/banner');
+    }
 }

@@ -145,4 +145,9 @@ class Stuntcoders_Banner_Adminhtml_BannerController extends Mage_Adminhtml_Contr
             return false;
         }
     }
+
+    protected function _isAllowed()
+    {
+        return Mage::getSingleton('admin/session')->isAllowed('cms/banner');
+    }
 }
