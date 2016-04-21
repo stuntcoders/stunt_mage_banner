@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file. This projec
 ## 1.2.3 - 2016-04-21
 ### CHANGED:
 - Adminhtml layout updates
+- Properly show banner groups in grid
 
 ## 1.2.2 - 2015-07-10
 ### CHANGED:

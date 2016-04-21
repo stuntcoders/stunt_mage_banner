@@ -31,7 +31,7 @@ class Stuntcoders_Banner_Model_Banner_Group extends Mage_Core_Model_Abstract
     {
         $groups = array();
         foreach ($this->getCollection() as $group) {
-            $groups[$group->getName()] = $group->getName();
+            $groups[$group->getId()] = $group->getName();
         }
 
         return $groups;
