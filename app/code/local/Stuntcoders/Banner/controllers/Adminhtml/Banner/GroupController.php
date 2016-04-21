@@ -60,7 +60,7 @@ class Stuntcoders_Banner_Adminhtml_Banner_GroupController extends Mage_Adminhtml
 
     public function massDeleteAction()
     {
-        $idList = $this->getRequest()->getParam('categories');
+        $idList = $this->getRequest()->getParam('groups');
         if (!is_array($idList)) {
             Mage::getSingleton('adminhtml/session')->addError(
                 Mage::helper('adminhtml')->__('Please select banner groups(s)')

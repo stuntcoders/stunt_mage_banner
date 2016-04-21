@@ -5,7 +5,8 @@ All notable changes to this project will be documented in this file. This projec
 ### CHANGED:
 - Adminhtml layout updates
 - Properly show banner groups in grid
-- Fix redirect on creating group banner
+- Fix redirect on creating banner group
+- Fix deleting banner groups
 
 ## 1.2.2 - 2015-07-10
 ### CHANGED:
