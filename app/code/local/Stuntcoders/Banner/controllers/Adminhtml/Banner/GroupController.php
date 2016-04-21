@@ -50,7 +50,7 @@ class Stuntcoders_Banner_Adminhtml_Banner_GroupController extends Mage_Adminhtml
                 Mage::getSingleton('adminhtml/session')->addSuccess(
                     Mage::helper('stuntcoders_banner')->__('Group successfully saved')
                 );
-                $this->_redirectReferer('*/*/');
+                $this->_redirect('*/*/add', array('id' => $bannerGroupModel->getId()));
             } catch (Exception $e) {
                 $this->_redirectReferer('*/*/');
                 Mage::getSingleton('adminhtml/session')->addError($e->getMessage());
@@ -60,7 +60,7 @@ class Stuntcoders_Banner_Adminhtml_Banner_GroupController extends Mage_Adminhtml
 
     public function massDeleteAction()
     {
-        $idList = $this->getRequest()->getParam('categories');
+        $idList = $this->getRequest()->getParam('groups');
         if (!is_array($idList)) {
             Mage::getSingleton('adminhtml/session')->addError(
                 Mage::helper('adminhtml')->__('Please select banner groups(s)')

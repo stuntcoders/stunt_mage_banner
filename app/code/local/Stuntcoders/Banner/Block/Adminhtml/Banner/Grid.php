@@ -13,11 +13,7 @@ class Stuntcoders_Banner_Block_Adminhtml_Banner_Grid extends Mage_Adminhtml_Bloc
 
     protected function _prepareCollection()
     {
-        $collection = Mage::getModel('stuntcoders_banner/banner')->getCollection()->join(
-            array('group_table' => 'stuntcoders_banner/banner_group'),
-            'group_table.group_id = main_table.group_id',
-            array('banner_group_name' => 'name')
-        );
+        $collection = Mage::getModel('stuntcoders_banner/banner')->getCollection();
 
         $this->setCollection($collection);
         return parent::_prepareCollection();
@@ -26,48 +22,50 @@ class Stuntcoders_Banner_Block_Adminhtml_Banner_Grid extends Mage_Adminhtml_Bloc
     protected function _prepareColumns()
     {
         $this->addColumn('banner_id', array(
-            'header'    => Mage::helper('stuntcoders_banner')->__('ID'),
-            'align'     =>'left',
-            'width'     => '50px',
-            'index'     => 'banner_id',
+            'header' => Mage::helper('stuntcoders_banner')->__('ID'),
+            'align' => 'left',
+            'width' => '50px',
+            'index' => 'banner_id'
+        ));
+
+        $this->addColumn('image', array(
+            'header' => Mage::helper('stuntcoders_banner')->__('Image'),
+            'align' => 'left',
+            'index' => 'image',
+            'renderer' => 'stuntcoders_banner/adminhtml_banner_grid_image_renderer',
+        ));
+
+        $this->addColumn('code', array(
+            'header' => Mage::helper('stuntcoders_banner')->__('Code'),
+            'align' => 'left',
+            'index' => 'code',
         ));
 
         $this->addColumn('heading', array(
-            'header'    => Mage::helper('stuntcoders_banner')->__('Code'),
-            'align'     =>'left',
-            'index'     => 'code',
+            'header' => Mage::helper('stuntcoders_banner')->__('Title'),
+            'align' => 'left',
+            'index' => 'heading',
         ));
 
-        $this->addColumn('heading', array(
-            'header'    => Mage::helper('stuntcoders_banner')->__('Title'),
-            'align'     =>'left',
-            'index'     => 'heading',
-        ));
-
-        $this->addColumn('banner_group_name', array(
-            'header'    => Mage::helper('stuntcoders_banner')->__('Group'),
-            'align'     =>'left',
-            'index'     => 'banner_group_name',
-            'type'      => 'options',
+        $this->addColumn('group_id', array(
+            'header' => Mage::helper('stuntcoders_banner')->__('Group'),
+            'align' => 'left',
+            'index' => 'group_id',
+            'type' => 'options',
             'options' => Mage::getModel('stuntcoders_banner/banner_group')->getGroupOptionValues()
         ));
 
         $this->addColumn('url', array(
-            'header'    => Mage::helper('stuntcoders_banner')->__('URL'),
-            'align'     =>'left',
-            'index'     => 'url',
+            'header' => Mage::helper('stuntcoders_banner')->__('URL'),
+            'align' => 'left',
+            'index' => 'url',
         ));
 
         $this->addColumn('text', array(
-            'header'    => Mage::helper('stuntcoders_banner')->__('Text'),
-            'align'     =>'left',
-            'index'     => 'text',
-        ));
-
-        $this->addColumn('image', array(
-            'header'    => Mage::helper('stuntcoders_banner')->__('Image'),
-            'align'     =>'left',
-            'index'     => 'image',
+            'header' => Mage::helper('stuntcoders_banner')->__('Text'),
+            'align' =>'left',
+            'index' => 'text',
+            'renderer' => 'stuntcoders_banner/adminhtml_banner_grid_description_renderer',
         ));
 
         return parent::_prepareColumns();
@@ -79,9 +77,9 @@ class Stuntcoders_Banner_Block_Adminhtml_Banner_Grid extends Mage_Adminhtml_Bloc
         $this->getMassactionBlock()->setFormFieldName('banners');
 
         $this->getMassactionBlock()->addItem('delete', array(
-            'label'    => Mage::helper('stuntcoders_banner')->__('Delete'),
-            'url'      => $this->getUrl('*/*/massDelete'),
-            'confirm'  => Mage::helper('stuntcoders_banner')->__('Are you sure?')
+            'label' => Mage::helper('stuntcoders_banner')->__('Delete'),
+            'url' => $this->getUrl('*/*/massDelete'),
+            'confirm' => Mage::helper('stuntcoders_banner')->__('Are you sure?')
         ));
 
         $this->getMassactionBlock()->addItem('group', array(
