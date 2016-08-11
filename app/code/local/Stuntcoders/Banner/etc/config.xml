@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Stuntcoders_Banner>
-            <version>1.2.2</version>
+            <version>1.2.4</version>
         </Stuntcoders_Banner>
     </modules>
     <admin>

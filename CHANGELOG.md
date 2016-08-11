@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file. This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.2.4 - 2016-08-11
+### CHANGED:
+- Convert content and heading from varchar to text
+
 ## 1.2.3 - 2016-04-21
 ### CHANGED:
 - Adminhtml layout updates
