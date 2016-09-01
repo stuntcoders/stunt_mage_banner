@@ -62,18 +62,6 @@
             </banner_read>
         </resources>
     </global>
-    <stores>
-        <admin>
-            <design>
-                <package>
-                    <name>leather-man-clothing</name>
-                </package>
-                <theme>
-                    <default>leather-man-clothing</default>
-                </theme>
-            </design>
-        </admin>
-    </stores>
     <adminhtml>
         <layout>
             <updates>
