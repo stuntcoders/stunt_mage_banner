@@ -11,8 +11,9 @@ class Stuntcoders_Banner_Model_Banner extends Mage_Core_Model_Abstract
     {
         $imagePath = $this->getData('image');
         if (empty($imagePath)) {
-            return "";
+            return '';
         }
+
         return Mage::getBaseUrl('media') . $imagePath;
     }
 
