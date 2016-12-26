@@ -2,18 +2,6 @@
 
 class Stuntcoders_Banner_Adminhtml_BannerController extends Mage_Adminhtml_Controller_Action
 {
-    protected function _initAction()
-    {
-        $this->loadLayout();
-        $this->_title($this->__('Banner Manager'));
-        if ($this->getRequest()->getParam('id')) {
-            $banner = Mage::getModel('stuntcoders_banner/banner')->load($this->getRequest()->getParam('id'));
-            Mage::register('banner_data', $banner);
-        }
-
-        return $this;
-    }
-
     public function indexAction()
     {
         $this->_initAction()->renderLayout();
@@ -28,39 +16,33 @@ class Stuntcoders_Banner_Adminhtml_BannerController extends Mage_Adminhtml_Contr
     {
         if ($postData = $this->getRequest()->getPost()) {
             try {
-                $bannerModel = Mage::getModel('stuntcoders_banner/banner');
+                $banner = Mage::getModel('stuntcoders_banner/banner');
 
-                if ($this->getRequest()->getParam('id')) {
-                    $bannerModel->load($this->getRequest()->getParam('id'));
-
+                if ($id = $this->getRequest()->getParam('id')) {
+                    $banner->load($id);
                 }
 
-                $bannerModel->setCode($postData['code'])
-                    ->setUrl($postData['url'])
-                    ->setGroupId($postData['group_id'])
-                    ->setText($postData['text'])
-                    ->setHeading($postData['heading'])
-                    ->setSortOrder($postData['sort_order'])
+                $banner->addData($postData)
                     ->setOpenInNewTab(!empty($postData['open_in_new_tab']));
 
                 if ($imageName = $this->_uploadImage()) {
-                    $bannerModel->setImage($imageName);
+                    $banner->setImage($imageName);
                 }
 
                 if (!empty($postData['image']['delete'])) {
-                    $bannerModel->setImage(null);
+                    $banner->setImage(null);
                 }
 
-                $bannerModel->save();
+                $banner->save();
 
-                Mage::getSingleton('adminhtml/session')->addSuccess(
-                    Mage::helper('stuntcoders_banner')->__('Item was successfully saved')
-                );
-
-                $this->_redirect('*/*/');
+                $this->_getSession()->addSuccess($this->__('Item was successfully saved'));
+                $this->_redirect('', array(
+                    '_current' => true,
+                    'id' => $banner->getId(),
+                ));
             } catch (Exception $e) {
+                $this->_getSession()->addError($e->getMessage());
                 $this->_redirectReferer('*/*/');
-                Mage::getSingleton('adminhtml/session')->addError($e->getMessage());
             }
         }
     }
@@ -69,21 +51,19 @@ class Stuntcoders_Banner_Adminhtml_BannerController extends Mage_Adminhtml_Contr
     {
         $idList = $this->getRequest()->getParam('banners');
         if (!is_array($idList)) {
-            Mage::getSingleton('adminhtml/session')->addError(
-                Mage::helper('adminhtml')->__('Please select banners(s)')
-            );
+            $this->_getSession()->addError($this->__('Please select banners(s)'));
         } else {
             try {
                 foreach ($idList as $itemId) {
                     Mage::getModel('stuntcoders_banner/banner')->setIsMassDelete(true)->load($itemId)->delete();
                 }
-                Mage::getSingleton('adminhtml/session')->addSuccess(
-                    Mage::helper('adminhtml')->__(
-                        'Total of %d record(s) were successfully deleted', count($idList)
-                    )
-                );
+
+                $this->_getSession()->addSuccess($this->__(
+                    'Total of %d record(s) were successfully deleted',
+                    count($idList)
+                ));
             } catch (Exception $e) {
-                Mage::getSingleton('adminhtml/session')->addError($e->getMessage());
+                $this->_getSession()->addError($e->getMessage());
             }
         }
 
@@ -93,11 +73,10 @@ class Stuntcoders_Banner_Adminhtml_BannerController extends Mage_Adminhtml_Contr
     public function massAssignAction()
     {
         $idList = $this->getRequest()->getParam('banners');
-        $groupId =  $this->getRequest()->getParam('group');
+        $groupId = $this->getRequest()->getParam('group');
+
         if (!is_array($idList) || !$groupId) {
-            Mage::getSingleton('adminhtml/session')->addError(
-                Mage::helper('adminhtml')->__('Please select banner(s) and banner group')
-            );
+            $this->_getSession()->addError($this->__('Please select banner(s) and banner group'));
         } else {
             try {
                 foreach ($idList as $itemId) {
@@ -106,46 +85,56 @@ class Stuntcoders_Banner_Adminhtml_BannerController extends Mage_Adminhtml_Contr
                         ->setGroupId($groupId)
                         ->save();
                 }
-                Mage::getSingleton('adminhtml/session')->addSuccess(
-                    Mage::helper('adminhtml')->__(
-                        'Total of %d record(s) were successfully updated', count($idList)
-                    )
-                );
+                $this->_getSession()->addSuccess($this->__(
+                    'Total of %d record(s) were successfully updated',
+                    count($idList)
+                ));
             } catch (Exception $e) {
-                Mage::getSingleton('adminhtml/session')->addError($e->getMessage());
+                $this->_getSession()->addError($e->getMessage());
             }
         }
 
         $this->_redirect('*/*/index');
     }
 
-    private function _uploadImage()
+    /**
+     * @return bool|string
+     */
+    protected function _uploadImage()
     {
-        if (!isset($_FILES['image']['name']) || !file_exists($_FILES['image']['tmp_name'])) {
-            return false;
-        }
-
         try {
+            $path = Mage::getBaseDir('var') . DS . 'stuntcoders' . DS . 'banner' . DS;
             $uploader = new Varien_File_Uploader('image');
-            $uploader->setAllowedExtensions(array('jpg','jpeg','gif','png'));
+            $uploader->setAllowedExtensions(array('jpg', 'jpeg', 'gif', 'png'));
+            $uploader->setAllowCreateFolders(true);
+            $uploader->setAllowRenameFiles(false);
+            $uploader->setFilesDispersion(false);
+            $uploader->save($path);
 
-            $path = Mage::getBaseDir('media') . DS . 'banner' . DS;
-
-            if (!file_exists($path)) {
-                mkdir($path, 0755, true);
-            }
-
-            $imageName = strtolower(str_replace(' ', '-', $_FILES['image']['name']));
-
-            $uploader->save($path, $imageName);
-
-            return 'banner/' . $imageName;
-
-        } catch(Exception $e) {
+            return $uploader->getUploadedFileName();
+        } catch (Exception $e) {
             return false;
         }
     }
 
+    /**
+     * @return Stuntcoders_Banner_Adminhtml_BannerController
+     */
+    protected function _initAction()
+    {
+        $this->loadLayout();
+        $this->_title($this->__('Banner Manager'));
+        if ($id = $this->getRequest()->getParam('id')) {
+            $banner = Mage::getModel('stuntcoders_banner/banner')->load($id);
+            Mage::register('current_banner', $banner);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
     protected function _isAllowed()
     {
         return Mage::getSingleton('admin/session')->isAllowed('cms/banner');
