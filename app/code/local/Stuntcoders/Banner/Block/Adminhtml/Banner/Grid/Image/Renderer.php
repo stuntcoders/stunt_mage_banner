@@ -5,10 +5,13 @@ class Stuntcoders_Banner_Block_Adminhtml_Banner_Grid_Image_Renderer
 {
     public function render(Varien_Object $row)
     {
-        if (!empty($row['image'])) {
-            return '<img src="' . Mage::getBaseUrl('media') . $row['image'] . '" width="100"/>';
-        } else {
-            return '<div class="a-center">' . $this->__('-- No image --') . '</div>';
+        if (empty($row['image'])) {
+            return "<div class=\"a-center\">{$this->__('-- No image --')}</div>";
+
         }
+
+        $url = Mage::helper('stuntcoders_banner')->getBaseMediaUrl() . $row['image'];
+
+        return "<img src=\"{$url}\" width=\"100\"/>";
     }
 }
