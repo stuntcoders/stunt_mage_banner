@@ -8,12 +8,12 @@
  */
 class Stuntcoders_Banner_Block_Banner extends Mage_Core_Block_Template
 {
-    public function getBannerUrl()
+    public function getUrl()
     {
         return $this->getBanner()->getUrl();
     }
 
-    public function getBannerImage()
+    public function getImage()
     {
         return $this->getBanner()->getImage();
     }
@@ -28,7 +28,7 @@ class Stuntcoders_Banner_Block_Banner extends Mage_Core_Block_Template
         return $this->getBanner()->getHeading();
     }
 
-    public function canOpenInNewTab()
+    public function getOpenInNewTab()
     {
         return $this->getBanner()->getOpenInNewTab();
     }
