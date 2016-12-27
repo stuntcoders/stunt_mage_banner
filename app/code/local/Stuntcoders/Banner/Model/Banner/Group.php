@@ -42,10 +42,9 @@ class Stuntcoders_Banner_Model_Banner_Group extends Mage_Core_Model_Abstract
         return $this->_getResource()->getIdByCode($code);
     }
 
-    protected function _afterLoad()
+    public function getBannerCollection()
     {
-        $this->setBanners($this->_getResource()->loadBanners($this->getId()));
-
-        parent::_afterLoad();
+        return Mage::getResourceModel('stuntcoders_banner/banner_collection')
+            ->addGroupFilter($this->getId());
     }
 }

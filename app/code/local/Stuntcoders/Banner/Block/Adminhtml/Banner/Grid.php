@@ -103,5 +103,4 @@ class Stuntcoders_Banner_Block_Adminhtml_Banner_Grid extends Mage_Adminhtml_Bloc
     {
         return $this->getUrl('*/*/add', array('id' => $row->getId()));
     }
-
 }
