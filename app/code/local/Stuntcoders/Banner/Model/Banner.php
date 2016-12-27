@@ -1,5 +1,21 @@
 <?php
 
+/**
+ * @method string getCode()
+ * @method Stuntcoders_Banner_Model_Banner setCode(string $code)
+ * @method string getUrl()
+ * @method Stuntcoders_Banner_Model_Banner setUrl(string $url)
+ * @method string getImageName()
+ * @method Stuntcoders_Banner_Model_Banner setImageName(string $name)
+ * @method string getText()
+ * @method Stuntcoders_Banner_Model_Banner setText(string $text)
+ * @method string getHeading()
+ * @method Stuntcoders_Banner_Model_Banner setHeading(string $heading)
+ * @method int getSortOrder()
+ * @method Stuntcoders_Banner_Model_Banner setSortOrder(int $sortOrder)
+ * @method int|null getGroupId()
+ * @method Stuntcoders_Banner_Model_Banner setGroupId(int $group)
+ */
 class Stuntcoders_Banner_Model_Banner extends Mage_Core_Model_Abstract
 {
     protected function _construct()
