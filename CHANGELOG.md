@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file. This project adheres to [Semantic Versioning](http://semver.org/).
 
+### 1.3.0 - 2016-12-27
+### CHANGED:
+- Update images upload path
+
 ## 1.2.4 - 2016-08-11
 ### CHANGED:
 - Convert content and heading from varchar to text

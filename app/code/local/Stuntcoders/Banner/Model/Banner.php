@@ -7,16 +7,6 @@ class Stuntcoders_Banner_Model_Banner extends Mage_Core_Model_Abstract
         $this->_init('stuntcoders_banner/banner');
     }
 
-    public function getImage()
-    {
-        $imagePath = $this->getData('image');
-        if (empty($imagePath)) {
-            return '';
-        }
-
-        return Mage::getBaseUrl('media') . $imagePath;
-    }
-
     public function getOpenInNewTab()
     {
         return (bool) $this->getData('open_in_new_tab');
@@ -34,5 +24,21 @@ class Stuntcoders_Banner_Model_Banner extends Mage_Core_Model_Abstract
         }
 
         return $bannerCollection;
+    }
+
+    protected function _afterLoad()
+    {
+        if ($imageName = $this->getImage()) {
+            $this->setImage($this->_getHelper()->getBaseMediaUrl() . $imageName);
+            $this->setImageName($imageName);
+        }
+    }
+
+    /**
+     * @return Stuntcoders_Banner_Helper_Data
+     */
+    protected function _getHelper()
+    {
+        return Mage::helper('stuntcoders_banner');
     }
 }

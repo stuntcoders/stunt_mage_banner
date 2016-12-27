@@ -36,10 +36,7 @@ class Stuntcoders_Banner_Adminhtml_BannerController extends Mage_Adminhtml_Contr
                 $banner->save();
 
                 $this->_getSession()->addSuccess($this->__('Item was successfully saved'));
-                $this->_redirect('', array(
-                    '_current' => true,
-                    'id' => $banner->getId(),
-                ));
+                $this->_redirect('*/*/add', array('id' => $banner->getId()));
             } catch (Exception $e) {
                 $this->_getSession()->addError($e->getMessage());
                 $this->_redirectReferer('*/*/');
@@ -103,13 +100,12 @@ class Stuntcoders_Banner_Adminhtml_BannerController extends Mage_Adminhtml_Contr
     protected function _uploadImage()
     {
         try {
-            $path = Mage::getBaseDir('var') . DS . 'stuntcoders' . DS . 'banner' . DS;
             $uploader = new Varien_File_Uploader('image');
             $uploader->setAllowedExtensions(array('jpg', 'jpeg', 'gif', 'png'));
             $uploader->setAllowCreateFolders(true);
             $uploader->setAllowRenameFiles(false);
             $uploader->setFilesDispersion(false);
-            $uploader->save($path);
+            $uploader->save(Mage::helper('stuntcoders_banner')->getBaseMediaPath());
 
             return $uploader->getUploadedFileName();
         } catch (Exception $e) {
