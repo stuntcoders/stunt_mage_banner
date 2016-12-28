@@ -16,8 +16,9 @@ class Stuntcoders_Banner_Block_Adminhtml_Group_Banners extends Mage_Adminhtml_Bl
         $this->setCollection(
             Mage::getModel('stuntcoders_banner/banner')
                 ->getCollection()
-                ->addFieldToFilter('group_id', Mage::registry('stuntcoders_banner_group_data')->getId())
+                ->addFieldToFilter('group_id', Mage::registry('current_banner_group')->getId())
         );
+
         return parent::_prepareCollection();
     }
 

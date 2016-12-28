@@ -7,8 +7,8 @@ class Stuntcoders_Banner_Adminhtml_Banner_GroupController extends Mage_Adminhtml
         $this->loadLayout();
         $this->_title($this->__('Banner Manager'));
         if ($id = $this->getRequest()->getParam('id')) {
-            $banner = Mage::getModel('stuntcoders_banner/banner_group')->load($id);
-            Mage::register('stuntcoders_banner_group_data', $banner);
+            $group = Mage::getModel('stuntcoders_banner/banner_group')->load($id);
+            Mage::register('current_banner_group', $group);
         }
 
         return $this;
