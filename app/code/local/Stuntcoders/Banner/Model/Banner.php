@@ -7,6 +7,8 @@
  * @method Stuntcoders_Banner_Model_Banner setUrl(string $url)
  * @method string getImageName()
  * @method Stuntcoders_Banner_Model_Banner setImageName(string $name)
+ * @method string getImage()
+ * @method Stuntcoders_Banner_Model_Banner setImage(string $image)
  * @method string getText()
  * @method Stuntcoders_Banner_Model_Banner setText(string $text)
  * @method string getHeading()
