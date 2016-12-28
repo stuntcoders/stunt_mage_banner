@@ -1,12 +1,13 @@
-<div class="banner-wrapper">
-    <?php foreach ($this->getBanners() as $banner): ?>
-        <?php $bannerImage = $banner->getImage(); ?>
-        <div class="banner-group-wrapper">
-            <a href="<?php echo $banner->getUrl(); ?>" <?php echo empty($bannerImage) ? '' : $bannerImage; ?>
-                <?php echo $banner->getOpenInNewTab() ?  'target="_blank"' : ''; ?>>
-                <div class="banner <?php echo $bannerImage ? 'banner-image' : ''; ?>">
-                    <p class='banenr-title'><?php echo $banner->getHeading(); ?> </p>
-                    <p class='banner-content'><?php echo $banner->getText();; ?></p>
+<?php /** @var Stuntcoders_Banner_Block_Banner_Group $this */ ?>
+<div class="banner-group-wrapper">
+    <?php foreach ($this->getGroup()->getBannerCollection() as $banner): ?>
+        <?php /** @var Stuntcoders_Banner_Model_Banner $banner */ ?>
+        <div class="banner-wrapper">
+            <a href="<?php echo $this->getUrl(); ?>" <?php echo $banner->getOpenInNewTab() ?  'target="_blank"' : ''; ?>>
+                <div class="banner">
+                    <img src="<?php echo $banner->getImage(); ?>" alt="<?php echo $banner->getHeading(); ?>">
+                    <p class="banenr-title"><?php echo $banner->getHeading(); ?></p>
+                    <p class="banner-content"><?php echo $banner->getText(); ?></p>
                 </div>
             </a>
         </div>

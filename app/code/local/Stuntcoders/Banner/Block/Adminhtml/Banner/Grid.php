@@ -30,7 +30,7 @@ class Stuntcoders_Banner_Block_Adminhtml_Banner_Grid extends Mage_Adminhtml_Bloc
 
         $this->addColumn('image', array(
             'header' => Mage::helper('stuntcoders_banner')->__('Image'),
-            'align' => 'left',
+            'align' => 'center',
             'index' => 'image',
             'renderer' => 'stuntcoders_banner/adminhtml_banner_grid_image_renderer',
         ));
@@ -103,5 +103,4 @@ class Stuntcoders_Banner_Block_Adminhtml_Banner_Grid extends Mage_Adminhtml_Bloc
     {
         return $this->getUrl('*/*/add', array('id' => $row->getId()));
     }
-
 }

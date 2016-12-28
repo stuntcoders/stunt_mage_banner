@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * @method string getName()
+ * @method Stuntcoders_Banner_Model_Banner_Group setName(string $name)
+ * @method string getCode()
+ * @method Stuntcoders_Banner_Model_Banner_Group setCode(string $code)
+ */
 class Stuntcoders_Banner_Model_Banner_Group extends Mage_Core_Model_Abstract
 {
     protected function _construct()
@@ -7,6 +13,9 @@ class Stuntcoders_Banner_Model_Banner_Group extends Mage_Core_Model_Abstract
         $this->_init('stuntcoders_banner/banner_group');
     }
 
+    /**
+     * @return array
+     */
     public function getSelectOptionValues()
     {
         $collections = $this->getCollection();
@@ -27,6 +36,9 @@ class Stuntcoders_Banner_Model_Banner_Group extends Mage_Core_Model_Abstract
         return $groups;
     }
 
+    /**
+     * @return array
+     */
     public function getGroupOptionValues()
     {
         $groups = array();
@@ -42,10 +54,12 @@ class Stuntcoders_Banner_Model_Banner_Group extends Mage_Core_Model_Abstract
         return $this->_getResource()->getIdByCode($code);
     }
 
-    protected function _afterLoad()
+    /**
+     * @return Stuntcoders_Banner_Model_Resource_Banner_Collection
+     */
+    public function getBannerCollection()
     {
-        $this->setBanners($this->_getResource()->loadBanners($this->getId()));
-
-        parent::_afterLoad();
+        return Mage::getResourceModel('stuntcoders_banner/banner_collection')
+            ->addGroupFilter($this->getId());
     }
 }

@@ -1,5 +1,23 @@
 <?php
 
+/**
+ * @method string getCode()
+ * @method Stuntcoders_Banner_Model_Banner setCode(string $code)
+ * @method string getUrl()
+ * @method Stuntcoders_Banner_Model_Banner setUrl(string $url)
+ * @method string getImageName()
+ * @method Stuntcoders_Banner_Model_Banner setImageName(string $name)
+ * @method string getImage()
+ * @method Stuntcoders_Banner_Model_Banner setImage(string $image)
+ * @method string getText()
+ * @method Stuntcoders_Banner_Model_Banner setText(string $text)
+ * @method string getHeading()
+ * @method Stuntcoders_Banner_Model_Banner setHeading(string $heading)
+ * @method int getSortOrder()
+ * @method Stuntcoders_Banner_Model_Banner setSortOrder(int $sortOrder)
+ * @method int|null getGroupId()
+ * @method Stuntcoders_Banner_Model_Banner setGroupId(int $group)
+ */
 class Stuntcoders_Banner_Model_Banner extends Mage_Core_Model_Abstract
 {
     protected function _construct()
@@ -7,31 +25,32 @@ class Stuntcoders_Banner_Model_Banner extends Mage_Core_Model_Abstract
         $this->_init('stuntcoders_banner/banner');
     }
 
-    public function getImage()
-    {
-        $imagePath = $this->getData('image');
-        if (empty($imagePath)) {
-            return "";
-        }
-        return Mage::getBaseUrl('media') . $imagePath;
-    }
-
+    /**
+     * @return bool
+     */
     public function getOpenInNewTab()
     {
         return (bool) $this->getData('open_in_new_tab');
     }
 
-    public function getBannersByGroupCode($code)
+    /**
+     * @return Stuntcoders_Banner_Model_Banner
+     */
+    protected function _afterLoad()
     {
-        $bannerGroupModel = Mage::getModel('stuntcoders_banner/banner_group');
-        $groupId = $bannerGroupModel->getIdByCode($code);
-        $banners = $bannerGroupModel->load($groupId)->getBanners();
-        $bannerCollection = new Varien_Data_Collection();
-
-        foreach ($banners as $banner) {
-            $bannerCollection->addItem(Mage::getModel('stuntcoders_banner/banner')->load($banner['banner_id']));
+        if ($imageName = $this->getImage()) {
+            $this->setImage($this->_getHelper()->getBaseMediaUrl() . $imageName);
+            $this->setImageName($imageName);
         }
 
-        return $bannerCollection;
+        return parent::_afterLoad();
+    }
+
+    /**
+     * @return Stuntcoders_Banner_Helper_Data
+     */
+    protected function _getHelper()
+    {
+        return Mage::helper('stuntcoders_banner');
     }
 }

@@ -14,8 +14,8 @@ class Stuntcoders_Banner_Block_Adminhtml_Banner_Form extends Mage_Adminhtml_Bloc
             )
         );
 
-        if (Mage::registry('banner_data')) {
-            $data = Mage::registry('banner_data')->getData();
+        if (Mage::registry('current_banner')) {
+            $data = Mage::registry('current_banner')->getData();
         } else {
             $data = array();
         }

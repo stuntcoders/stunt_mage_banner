@@ -6,9 +6,9 @@ class Stuntcoders_Banner_Adminhtml_Banner_GroupController extends Mage_Adminhtml
     {
         $this->loadLayout();
         $this->_title($this->__('Banner Manager'));
-        if ($this->getRequest()->getParam('id')) {
-            $banner = Mage::getModel('stuntcoders_banner/banner_group')->load($this->getRequest()->getParam('id'));
-            Mage::register('stuntcoders_banner_group_data', $banner);
+        if ($id = $this->getRequest()->getParam('id')) {
+            $group = Mage::getModel('stuntcoders_banner/banner_group')->load($id);
+            Mage::register('current_banner_group', $group);
         }
 
         return $this;
@@ -30,14 +30,13 @@ class Stuntcoders_Banner_Adminhtml_Banner_GroupController extends Mage_Adminhtml
             try {
                 $bannerGroupModel = Mage::getModel('stuntcoders_banner/banner_group');
 
-                if ($this->getRequest()->getParam('id')) {
-                    $bannerGroupModel->setId($this->getRequest()->getParam('id'));
+                if ($id = $this->getRequest()->getParam('id')) {
+                    $bannerGroupModel->setId($id);
                 }
 
                 $bannerGroupModel->setCode($postData['code'])->setName($postData['name'])->save();
 
                 if (!empty($postData['banner_positions'])) {
-                    Mage::log($postData['banner_positions']);
                     $bannerPositions = json_decode($postData['banner_positions'], true);
                     foreach ($bannerPositions as $bannerId => $bannerPosition) {
                         Mage::getModel('stuntcoders_banner/banner')
@@ -47,13 +46,11 @@ class Stuntcoders_Banner_Adminhtml_Banner_GroupController extends Mage_Adminhtml
                     }
                 }
 
-                Mage::getSingleton('adminhtml/session')->addSuccess(
-                    Mage::helper('stuntcoders_banner')->__('Group successfully saved')
-                );
+                $this->_getSession()->addSuccess($this->_getHelper()->__('Group successfully saved'));
                 $this->_redirect('*/*/add', array('id' => $bannerGroupModel->getId()));
             } catch (Exception $e) {
                 $this->_redirectReferer('*/*/');
-                Mage::getSingleton('adminhtml/session')->addError($e->getMessage());
+                $this->_getHelper()->addError($e->getMessage());
             }
         }
     }
@@ -62,9 +59,7 @@ class Stuntcoders_Banner_Adminhtml_Banner_GroupController extends Mage_Adminhtml
     {
         $idList = $this->getRequest()->getParam('groups');
         if (!is_array($idList)) {
-            Mage::getSingleton('adminhtml/session')->addError(
-                Mage::helper('adminhtml')->__('Please select banner groups(s)')
-            );
+            $this->_getSession()->addError($this->__('Please select banner groups(s)'));
         } else {
             try {
                 foreach ($idList as $itemId) {
@@ -74,13 +69,12 @@ class Stuntcoders_Banner_Adminhtml_Banner_GroupController extends Mage_Adminhtml
                         ->delete();
                 }
 
-                Mage::getSingleton('adminhtml/session')->addSuccess(
-                    Mage::helper('adminhtml')->__(
-                        'Total of %d record(s) were successfully deleted', count($idList)
-                    )
-                );
+                $this->_getSession()->addSuccess($this->__(
+                    'Total of %d record(s) were successfully deleted',
+                    count($idList)
+                ));
             } catch (Exception $e) {
-                Mage::getSingleton('adminhtml/session')->addError($e->getMessage());
+                $this->_getSession()->addError($e->getMessage());
             }
         }
 

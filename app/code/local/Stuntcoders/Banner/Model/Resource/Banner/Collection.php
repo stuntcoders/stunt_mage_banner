@@ -8,15 +8,24 @@ class Stuntcoders_Banner_Model_Resource_Banner_Collection extends Mage_Core_Mode
         $this->_init('stuntcoders_banner/banner');
     }
 
-    public function addBannerFilter($banner)
+    public function addBannerFilter($bannerId)
     {
-        $this->getSelect()->where('main_table.banner_id in (?)', $banner);
+        $this->getSelect()->where('main_table.banner_id = ?', $bannerId);
+
         return $this;
     }
 
-    public function addCategoryFilter($category)
+    public function addGroupFilter($groupId)
     {
-        $this->getSelect()->where('main_table.category in (?)', $category);
+        $this->getSelect()->where('main_table.group_id = ?', $groupId);
+
         return $this;
+    }
+
+    protected function _afterLoad()
+    {
+        $this->walk('afterLoad');
+
+        return parent::_afterLoad();
     }
 }

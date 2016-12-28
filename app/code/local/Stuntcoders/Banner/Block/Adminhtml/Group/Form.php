@@ -13,8 +13,8 @@ class Stuntcoders_Banner_Block_Adminhtml_Group_Form extends Mage_Adminhtml_Block
             )
         );
 
-        if (Mage::registry('stuntcoders_banner_group_data')) {
-            $data = Mage::registry('stuntcoders_banner_group_data')->getData();
+        if (Mage::registry('current_banner_group')) {
+            $data = Mage::registry('current_banner_group')->getData();
         } else {
             $data = array();
         }

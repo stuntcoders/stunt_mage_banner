@@ -1,34 +1,20 @@
 <?php
 
+/**
+ * @method Stuntcoders_Banner_Model_Banner_Group getGroup()
+ * @method Stuntcoders_Banner_Model_Banner_Group setGroup(Stuntcoders_Banner_Model_Banner_Group $group)
+ * @method string getCode()
+ * @method Stuntcoders_Banner_Block_Banner_Group setCode(string $code)
+ */
 class Stuntcoders_Banner_Block_Banner_Group extends Mage_Core_Block_Template
 {
-    public function __construct()
+    protected function _toHtml()
     {
-        $this->setTemplate('stuntcoders/banner/group.phtml');
-    }
-
-    public function getBanners()
-    {
-        if (!$this->hasLoadedBanners()) {
-            $this->_loadBanners();
+        $this->setGroup(Mage::getModel('stuntcoders_banner/banner_group'));
+        if ($this->getCode()) {
+            $this->getGroup()->load($this->getCode(), 'code');
         }
 
-        return $this->getLoadedBanners();
-    }
-
-    protected function _loadBanners()
-    {
-        $this->setLoadedBanners(array());
-        if ($this->getId()) {
-            $this->setLoadedBanners(
-                Mage::getModel('stuntcoders_banner/banner_group')->load($this->getId())->getBanners()
-            );
-        } else if ($this->getCode()) {
-            $this->setLoadedBanners(
-                Mage::getModel('stuntcoders_banner/banner')->getBannersByGroupCode($this->getCode())
-            );
-        }
-
-        return $this;
+        return parent::_toHtml();
     }
 }
