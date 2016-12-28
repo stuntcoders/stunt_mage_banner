@@ -1,39 +1,36 @@
 # Stuntcoders Banner
 
-Banner is Magento extension that simplifies creating and managing banners.
+Module which enhances Magento CMS by adding allowing admins to create banners and add them to banner groups.
 
 ## Usage
-* Create banner - This can be done from admin panel (CMS -> Banner)
+* Create banner – This can be done from admin panel (CMS -> Banner)
 * Fetch banner or banner group on frontend
-
-Getting banner data by id:
-```php
-<?php
-	$banner = Mage::getModel('stuntcoders_banner/banner')->load(<banner id>);
-?>
-```
 
 Getting banner data by code:
 ```php
 <?php
-	$banner = Mage::getModel('stuntcoders_banner/banner')->load('<banner code>', 'code');
-?>
+    $banner = Mage::getModel('stuntcoders_banner/banner')->load('<banner code>', 'code');
 ```
 
 Rendering banner block:
 ```xml
-<block type="stuntcoders_banner/banner" name="stuntcoders.banner" template="banner/banner.phtml">
-    <action method="setData">
-        <name>code</name>
-        <value>banner code</value>
-    </action>
+<block type="stuntcoders_banner/banner" name="stuntcoders.banner" template="stuntcoders/banner/banner.phtml">
+    <action method="setCode"><value>example-banner-code</value></action>
 </block>
 ```
 
-
-To add your own classes and identifiers and output menu on frontend, you can use the following code:
+To get banenr from banner group:
 ```php
 <?php
-    $banners = Mage::getModel('stuntcoders_banner/banner')->getBannersByGroupCode(<banner group code>);
-?>
+    $group = Mage::getModel('stuntcoders_banner/banner_group')->load('<banner group code>', 'code');
+    foreach ($group->getBannerColelction() as $banner) {
+       ...
+    }
+```
+
+Rendering banner group block:
+```xml
+<block type="stuntcoders_banner/banne_groupr" name="stuntcoders.banner.group" template="stuntcoders/banner/group.phtml">
+    <action method="setCode"><value>example-banner-group-code</value></action>
+</block>
 ```

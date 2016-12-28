@@ -1,9 +1,13 @@
 # Change Log
 All notable changes to this project will be documented in this file. This project adheres to [Semantic Versioning](http://semver.org/).
 
-### 1.3.0 - 2016-12-27
+### Unreleased
+### ADDED:
+- PHPDoc annotation
+
 ### CHANGED:
 - Update images upload path
+- Update readme
 
 ## 1.2.4 - 2016-08-11
 ### CHANGED:
