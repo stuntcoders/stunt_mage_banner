@@ -40,9 +40,9 @@ class Stuntcoders_Banner_Block_Adminhtml_New_Form extends Mage_Adminhtml_Block_W
             'values' => Mage::getModel('stuntcoders_banner/banner_group')->getSelectOptionValues()
         ));
 
-        $fieldset->addField('heading', 'text', array(
+        $fieldset->addField('title', 'text', array(
             'label' => Mage::helper('stuntcoders_banner')->__('Title'),
-            'name' => 'heading',
+            'name' => 'title',
         ));
 
         $fieldset->addField('url', 'text', array(
@@ -51,9 +51,9 @@ class Stuntcoders_Banner_Block_Adminhtml_New_Form extends Mage_Adminhtml_Block_W
             'note' =>  Mage::helper('stuntcoders_banner')->__('On click url'),
         ));
 
-        $fieldset->addField('text', 'textarea', array(
+        $fieldset->addField('content', 'textarea', array(
             'label' => Mage::helper('stuntcoders_banner')->__('Text'),
-            'name' => 'text',
+            'name' => 'content',
         ));
 
         $fieldset->addField('image', 'image', array(
