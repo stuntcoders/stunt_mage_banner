@@ -3,6 +3,7 @@ All notable changes to this project will be documented in this file. This projec
 
 ## Unreleased:
 ### CHANGED:
+- Refactor banner grid blocks
 
 ### 1.3.0 - 2016-12-28
 ### ADDED:
