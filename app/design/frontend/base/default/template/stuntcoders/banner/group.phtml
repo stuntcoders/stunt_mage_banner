@@ -5,9 +5,9 @@
         <div class="banner-wrapper">
             <a href="<?php echo $this->getUrl(); ?>" <?php echo $banner->getOpenInNewTab() ?  'target="_blank"' : ''; ?>>
                 <div class="banner">
-                    <img src="<?php echo $banner->getImage(); ?>" alt="<?php echo $banner->getHeading(); ?>">
-                    <p class="banenr-title"><?php echo $banner->getHeading(); ?></p>
-                    <p class="banner-content"><?php echo $banner->getText(); ?></p>
+                    <img src="<?php echo $banner->getImage(); ?>" alt="<?php echo $banner->getTitle(); ?>">
+                    <p class="banenr-title"><?php echo $banner->getTitle(); ?></p>
+                    <p class="banner-content"><?php echo $banner->getContent(); ?></p>
                 </div>
             </a>
         </div>
