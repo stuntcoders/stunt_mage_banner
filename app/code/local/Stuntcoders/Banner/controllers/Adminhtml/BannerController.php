@@ -39,7 +39,22 @@ class Stuntcoders_Banner_Adminhtml_BannerController extends Mage_Adminhtml_Contr
                 $this->_redirect('*/*/new', array('id' => $banner->getId()));
             } catch (Exception $e) {
                 $this->_getSession()->addError($e->getMessage());
-                $this->_redirectReferer('*/*/');
+                $this->_redirectReferer();
+            }
+        }
+    }
+
+    public function deleteAction()
+    {
+        if ($id = $this->getRequest()->getParam('id')) {
+            try {
+                Mage::getModel('stuntcoders_banner/banner')->setId($id)->delete();
+
+                $this->_getSession()->addSuccess($this->__('Item was successfully deleted'));
+                $this->_redirect('*/*');
+            } catch (Exception $e) {
+                $this->_getSession()->addError($e->getMessage());
+                $this->_redirectReferer();
             }
         }
     }
