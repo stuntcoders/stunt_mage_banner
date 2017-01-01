@@ -115,6 +115,6 @@ class Stuntcoders_Banner_Block_Adminhtml_Index_Grid extends Mage_Adminhtml_Block
      */
     public function getRowUrl($row)
     {
-        return $this->getUrl('*/*/add', array('id' => $row->getId()));
+        return $this->getUrl('*/*/new', array('id' => $row->getId()));
     }
 }
