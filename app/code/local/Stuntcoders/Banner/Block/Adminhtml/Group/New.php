@@ -21,11 +21,8 @@ class Stuntcoders_Banner_Block_Adminhtml_Group_New extends Mage_Adminhtml_Block_
     {
         parent::_prepareLayout();
 
-        $objectId = $this->getRequest()->getParam($this->_objectId);
-        if (!empty($objectId) || true) {
-            $this->_addBannersGrid();
-            $this->_addFormScripts();
-        }
+        $this->_addBannersGrid();
+        $this->_addFormScripts();
 
         return $this;
     }
