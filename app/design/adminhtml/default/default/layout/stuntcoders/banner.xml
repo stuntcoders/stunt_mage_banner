@@ -8,7 +8,7 @@
 
     <adminhtml_banner_new>
         <reference name="content">
-            <block type="stuntcoders_banner/adminhtml_bannerForm" name="banner.add" />
+            <block type="stuntcoders_banner/adminhtml_new" name="banner.new" />
         </reference>
     </adminhtml_banner_new>
 
