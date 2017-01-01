@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file. This projec
 ## Unreleased:
 ### CHANGED:
 - Refactor banner grid blocks
+- Refactor banner group blocks
+- Change primary fields to "id"
 
 ### 1.3.0 - 2016-12-28
 ### ADDED:
