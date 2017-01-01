@@ -2,7 +2,7 @@
 <layout version="0.1.0">
     <adminhtml_banner_index>
         <reference name="content">
-            <block type="stuntcoders_banner/adminhtml_banner" name="banner.index" />
+            <block type="stuntcoders_banner/adminhtml_index" name="stuntcoders.banner.index" />
         </reference>
     </adminhtml_banner_index>
 
