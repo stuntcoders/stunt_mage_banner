@@ -20,22 +20,22 @@ class Stuntcoders_Banner_Block_Adminhtml_Group_Index_Grid extends Mage_Adminhtml
     protected function _prepareColumns()
     {
         $this->addColumn('group_id', array(
-            'header'    => Mage::helper('stuntcoders_banner')->__('Group Id'),
-            'align'     =>'left',
-            'width'     => '50px',
-            'index'     => 'group_id',
+            'header' => $this->__('Group Id'),
+            'align' => 'left',
+            'width' => '50px',
+            'index' => 'group_id',
         ));
 
         $this->addColumn('code', array(
-            'header'    => Mage::helper('stuntcoders_banner')->__('Code'),
-            'align'     => 'left',
-            'index'     => 'code',
+            'header' => $this->__('Code'),
+            'align' => 'left',
+            'index' => 'code',
         ));
 
         $this->addColumn('name', array(
-            'header'    => Mage::helper('stuntcoders_banner')->__('Name'),
-            'align'     => 'left',
-            'index'     => 'name',
+            'header' => $this->__('Name'),
+            'align' => 'left',
+            'index' => 'name',
         ));
 
         return parent::_prepareColumns();
@@ -47,9 +47,9 @@ class Stuntcoders_Banner_Block_Adminhtml_Group_Index_Grid extends Mage_Adminhtml
         $this->getMassactionBlock()->setFormFieldName('groups');
 
         $this->getMassactionBlock()->addItem('delete', array(
-            'label'    => Mage::helper('stuntcoders_banner')->__('Delete'),
-            'url'      => $this->getUrl('*/banner_group/massDelete'),
-            'confirm'  => Mage::helper('stuntcoders_banner')->__('Are you sure?')
+            'label' => $this->__('Delete'),
+            'url' => $this->getUrl('*/banner_group/massDelete'),
+            'confirm' => $this->__('Are you sure?')
         ));
 
         return $this;
@@ -57,6 +57,6 @@ class Stuntcoders_Banner_Block_Adminhtml_Group_Index_Grid extends Mage_Adminhtml
 
     public function getRowUrl($row)
     {
-        return $this->getUrl('*/*/add', array('id' => $row->getId()));
+        return $this->getUrl('*/*/new', array('id' => $row->getId()));
     }
 }
