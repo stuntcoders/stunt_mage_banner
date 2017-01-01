@@ -4,7 +4,7 @@ class Stuntcoders_Banner_Model_Resource_Banner_Group extends Mage_Core_Model_Res
 {
     protected function _construct()
     {
-        $this->_init('stuntcoders_banner/banner_group', 'group_id');
+        $this->_init('stuntcoders_banner/banner_group', 'id');
     }
 
     public function getIdByCode($code)
