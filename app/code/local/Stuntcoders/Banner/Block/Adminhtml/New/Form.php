@@ -1,6 +1,6 @@
 <?php
 
-class Stuntcoders_Banner_Block_Adminhtml_Banner_Form extends Mage_Adminhtml_Block_Widget_Form
+class Stuntcoders_Banner_Block_Adminhtml_New_Form extends Mage_Adminhtml_Block_Widget_Form
 {
     protected function _prepareForm()
     {
