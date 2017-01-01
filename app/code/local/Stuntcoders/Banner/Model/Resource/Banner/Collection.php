@@ -10,7 +10,7 @@ class Stuntcoders_Banner_Model_Resource_Banner_Collection extends Mage_Core_Mode
 
     public function addBannerFilter($bannerId)
     {
-        $this->getSelect()->where('main_table.banner_id = ?', $bannerId);
+        $this->getSelect()->where('main_table.id = ?', $bannerId);
 
         return $this;
     }

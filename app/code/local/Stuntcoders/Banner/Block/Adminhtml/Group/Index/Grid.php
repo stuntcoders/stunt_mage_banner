@@ -6,7 +6,7 @@ class Stuntcoders_Banner_Block_Adminhtml_Group_Index_Grid extends Mage_Adminhtml
     {
         parent::__construct();
         $this->setId('bannerGroupGrid');
-        $this->setDefaultSort('group_id');
+        $this->setDefaultSort('id');
         $this->setDefaultDir('DESC');
         $this->setSaveParametersInSession(true);
     }
@@ -19,11 +19,11 @@ class Stuntcoders_Banner_Block_Adminhtml_Group_Index_Grid extends Mage_Adminhtml
 
     protected function _prepareColumns()
     {
-        $this->addColumn('group_id', array(
-            'header' => $this->__('Group Id'),
+        $this->addColumn('id', array(
+            'header' => $this->__('id'),
             'align' => 'left',
             'width' => '50px',
-            'index' => 'group_id',
+            'index' => 'id',
         ));
 
         $this->addColumn('code', array(
@@ -43,12 +43,12 @@ class Stuntcoders_Banner_Block_Adminhtml_Group_Index_Grid extends Mage_Adminhtml
 
     protected function _prepareMassaction()
     {
-        $this->setMassactionIdField('group_id');
+        $this->setMassactionIdField('id');
         $this->getMassactionBlock()->setFormFieldName('groups');
 
         $this->getMassactionBlock()->addItem('delete', array(
             'label' => $this->__('Delete'),
-            'url' => $this->getUrl('*/banner_group/massDelete'),
+            'url' => $this->getUrl('*/*/massDelete'),
             'confirm' => $this->__('Are you sure?')
         ));
 

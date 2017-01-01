@@ -6,7 +6,7 @@ class Stuntcoders_Banner_Block_Adminhtml_Index_Grid extends Mage_Adminhtml_Block
     {
         parent::__construct();
         $this->setId('bannerGrid');
-        $this->setDefaultSort('banner_id');
+        $this->setDefaultSort('id');
         $this->setDefaultDir('DESC');
         $this->setSaveParametersInSession(true);
     }
@@ -22,11 +22,11 @@ class Stuntcoders_Banner_Block_Adminhtml_Index_Grid extends Mage_Adminhtml_Block
 
     protected function _prepareColumns()
     {
-        $this->addColumn('banner_id', array(
+        $this->addColumn('id', array(
             'header' => $this->__('ID'),
             'align' => 'left',
             'width' => '50px',
-            'index' => 'banner_id'
+            'index' => 'id'
         ));
 
         $this->addColumn('image', array(
@@ -64,7 +64,7 @@ class Stuntcoders_Banner_Block_Adminhtml_Index_Grid extends Mage_Adminhtml_Block
 
         $this->addColumn('text', array(
             'header' => $this->__('Text'),
-            'align' =>'left',
+            'align' => 'left',
             'index' => 'text',
             'renderer' => 'stuntcoders_banner/adminhtml_index_grid_description_renderer',
         ));
@@ -74,7 +74,7 @@ class Stuntcoders_Banner_Block_Adminhtml_Index_Grid extends Mage_Adminhtml_Block
 
     protected function _prepareMassaction()
     {
-        $this->setMassactionIdField('banner_id');
+        $this->setMassactionIdField('id');
         $this->getMassactionBlock()->setFormFieldName('banners');
 
         $this->getMassactionBlock()->addItem('delete', array(

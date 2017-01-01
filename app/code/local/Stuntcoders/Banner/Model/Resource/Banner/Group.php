@@ -19,14 +19,4 @@ class Stuntcoders_Banner_Model_Resource_Banner_Group extends Mage_Core_Model_Res
 
         return $adapter->fetchOne($select, $bind);
     }
-
-    public function loadBanners($id)
-    {
-        $select = $this->_getReadAdapter()->select()
-            ->from($this->getTable('stuntcoders_banner/banner'))
-            ->where('group_id = ?', $id)
-            ->order('sort_order');
-
-        return $this->_getReadAdapter()->fetchAll($select);
-    }
 }

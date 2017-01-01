@@ -6,7 +6,7 @@ class Stuntcoders_Banner_Block_Adminhtml_Group_Banners extends Mage_Adminhtml_Bl
     {
         parent::__construct();
         $this->setId('bannerGrid');
-        $this->setDefaultSort('banner_id');
+        $this->setDefaultSort('id');
         $this->setDefaultDir('DESC');
         $this->setSaveParametersInSession(true);
     }
@@ -24,42 +24,42 @@ class Stuntcoders_Banner_Block_Adminhtml_Group_Banners extends Mage_Adminhtml_Bl
 
     protected function _prepareColumns()
     {
-        $this->addColumn('banner_id', array(
-            'header'    => Mage::helper('stuntcoders_banner')->__('ID'),
-            'align'     =>'left',
-            'width'     => '50px',
-            'index'     => 'banner_id',
+        $this->addColumn('id', array(
+            'header' => $this->__('ID'),
+            'align' =>'left',
+            'width' => '50px',
+            'index' => 'id',
         ));
 
         $this->addColumn('heading', array(
-            'header'    => Mage::helper('stuntcoders_banner')->__('Title'),
-            'align'     =>'left',
-            'index'     => 'heading',
+            'header' => $this->__('Title'),
+            'align' => 'left',
+            'index' => 'heading',
         ));
 
         $this->addColumn('code', array(
-            'header'    => Mage::helper('stuntcoders_banner')->__('Code'),
-            'align'     =>'left',
-            'index'     => 'code',
+            'header' => $this->__('Code'),
+            'align' => 'left',
+            'index' => 'code',
         ));
 
         $this->addColumn('url', array(
-            'header'    => Mage::helper('stuntcoders_banner')->__('URL'),
-            'align'     =>'left',
-            'index'     => 'url',
+            'header' => $this->__('URL'),
+            'align' => 'left',
+            'index' => 'url',
         ));
 
         $this->addColumn('text', array(
-            'header'    => Mage::helper('stuntcoders_banner')->__('Text'),
-            'align'     =>'left',
-            'index'     => 'text',
+            'header' => $this->__('Text'),
+            'align' => 'left',
+            'index' => 'text',
         ));
 
         $this->addColumn('sort_order', array(
-            'header'    => Mage::helper('stuntcoders_banner')->__('Sort order'),
-            'align'     =>'left',
-            'index'     => 'sort_order',
-            'editable'  => true,
+            'header' => $this->__('Sort order'),
+            'align' => 'left',
+            'index' => 'sort_order',
+            'editable' => true,
         ));
 
         return parent::_prepareColumns();
