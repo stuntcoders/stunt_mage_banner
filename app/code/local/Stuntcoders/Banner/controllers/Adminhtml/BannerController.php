@@ -36,7 +36,7 @@ class Stuntcoders_Banner_Adminhtml_BannerController extends Mage_Adminhtml_Contr
                 $banner->save();
 
                 $this->_getSession()->addSuccess($this->__('Item was successfully saved'));
-                $this->_redirect('*/*/add', array('id' => $banner->getId()));
+                $this->_redirect('*/*/new', array('id' => $banner->getId()));
             } catch (Exception $e) {
                 $this->_getSession()->addError($e->getMessage());
                 $this->_redirectReferer('*/*/');
