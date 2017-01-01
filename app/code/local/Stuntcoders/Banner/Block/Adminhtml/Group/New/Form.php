@@ -45,6 +45,7 @@ class Stuntcoders_Banner_Block_Adminhtml_Group_New_Form extends Mage_Adminhtml_B
 
         $form->setUseContainer(true);
         $this->setForm($form);
+
         return parent::_prepareForm();
     }
 }

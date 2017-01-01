@@ -11,4 +11,45 @@ class Stuntcoders_Banner_Block_Adminhtml_Group_New extends Mage_Adminhtml_Block_
 
         parent::__construct();
     }
+
+    public function getFormScripts()
+    {
+        return $this->getChildHtml('form.scripts');
+    }
+
+    protected function _prepareLayout()
+    {
+        parent::_prepareLayout();
+
+        $objectId = $this->getRequest()->getParam($this->_objectId);
+        if (!empty($objectId) || true) {
+            $this->_addBannersGrid();
+            $this->_addFormScripts();
+        }
+
+        return $this;
+    }
+
+    protected function _addBannersGrid()
+    {
+        /** @var Stuntcoders_Banner_Block_Adminhtml_Group_New_Form $form */
+        $form = $this->getChild('form');
+
+        if ($form) {
+            /** @var Stuntcoders_Banner_Block_Adminhtml_Group_Banners $block */
+            $block = $this->getLayout()->createBlock('stuntcoders_banner/adminhtml_group_banners');
+
+            $form->setChild('form_after', $block);
+        }
+    }
+
+    protected function _addFormScripts()
+    {
+        /** @var Mage_Core_Block_Template $block */
+        $block = $this->getLayout()
+            ->createBlock('core/template')
+            ->setTemplate('stuntcoders/banner/group/new/scripts.phtml');
+
+        $this->setChild('form.scripts', $block);
+    }
 }
