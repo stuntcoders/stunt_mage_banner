@@ -34,6 +34,21 @@ class Stuntcoders_Banner_Block_Adminhtml_New_Form extends Mage_Adminhtml_Block_W
             'name' => 'code',
         ));
 
+        if (!Mage::app()->isSingleStoreMode()) {
+            $fieldset->addField('store_id', 'multiselect', array(
+                'name' => 'stores[]',
+                'label' => Mage::helper('stuntcoders_banner')->__('Store View'),
+                'title' => Mage::helper('stuntcoders_banner')->__('Store View'),
+                'required' => true,
+                'values' => Mage::getSingleton('adminhtml/system_store')->getStoreValuesForForm(false, true),
+            ));
+        } else {
+            $fieldset->addField('store_id', 'hidden', array(
+                'name' => 'stores[]',
+                'value' => Mage::app()->getStore(true)->getId()
+            ));
+        }
+
         $fieldset->addField('group_id', 'select', array(
             'label' => Mage::helper('stuntcoders_banner')->__('Banner Group'),
             'name' => 'group_id',
@@ -45,15 +60,15 @@ class Stuntcoders_Banner_Block_Adminhtml_New_Form extends Mage_Adminhtml_Block_W
             'name' => 'title',
         ));
 
+        $fieldset->addField('content', 'textarea', array(
+            'label' => Mage::helper('stuntcoders_banner')->__('Text'),
+            'name' => 'content',
+        ));
+
         $fieldset->addField('url', 'text', array(
             'label' => Mage::helper('stuntcoders_banner')->__('Url'),
             'name' => 'url',
             'note' =>  Mage::helper('stuntcoders_banner')->__('On click url'),
-        ));
-
-        $fieldset->addField('content', 'textarea', array(
-            'label' => Mage::helper('stuntcoders_banner')->__('Text'),
-            'name' => 'content',
         ));
 
         $fieldset->addField('image', 'image', array(
