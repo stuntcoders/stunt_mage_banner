@@ -29,7 +29,9 @@ $table->addForeignKey(
     $this->getFkName('stuntcoders_banner/banner', 'group_id', 'stuntcoders_banner/banner_group', 'id'),
     'group_id',
     'stuntcoders_banner/banner_group',
-    'id'
+    'id',
+    Varien_Db_Ddl_Table::ACTION_SET_NULL,
+    Varien_Db_Ddl_Table::ACTION_CASCADE
 );
 
 $this->getConnection()->createTable($table);
