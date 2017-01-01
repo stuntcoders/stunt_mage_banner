@@ -11,6 +11,9 @@ class Stuntcoders_Banner_Block_Adminhtml_Index_Grid extends Mage_Adminhtml_Block
         $this->setSaveParametersInSession(true);
     }
 
+    /**
+     * @return Mage_Adminhtml_Block_Widget_Grid
+     */
     protected function _prepareCollection()
     {
         $collection = Mage::getModel('stuntcoders_banner/banner')->getCollection();
@@ -20,6 +23,9 @@ class Stuntcoders_Banner_Block_Adminhtml_Index_Grid extends Mage_Adminhtml_Block
         return parent::_prepareCollection();
     }
 
+    /**
+     * @return Mage_Adminhtml_Block_Widget_Grid
+     */
     protected function _prepareColumns()
     {
         $this->addColumn('id', array(
@@ -72,6 +78,9 @@ class Stuntcoders_Banner_Block_Adminhtml_Index_Grid extends Mage_Adminhtml_Block
         return parent::_prepareColumns();
     }
 
+    /**
+     * @return Stuntcoders_Banner_Block_Adminhtml_Index_Grid
+     */
     protected function _prepareMassaction()
     {
         $this->setMassactionIdField('id');

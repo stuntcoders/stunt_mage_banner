@@ -12,11 +12,17 @@ class Stuntcoders_Banner_Block_Adminhtml_Group_New extends Mage_Adminhtml_Block_
         parent::__construct();
     }
 
+    /**
+     * @return string
+     */
     public function getFormScripts()
     {
         return $this->getChildHtml('form.scripts');
     }
 
+    /**
+     * @return Stuntcoders_Banner_Block_Adminhtml_Group_New
+     */
     protected function _prepareLayout()
     {
         parent::_prepareLayout();

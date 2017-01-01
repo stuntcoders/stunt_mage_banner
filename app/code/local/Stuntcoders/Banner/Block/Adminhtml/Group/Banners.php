@@ -11,17 +11,24 @@ class Stuntcoders_Banner_Block_Adminhtml_Group_Banners extends Mage_Adminhtml_Bl
         $this->setSaveParametersInSession(true);
     }
 
+    /**
+     * @return Mage_Adminhtml_Block_Widget_Grid
+     */
     protected function _prepareCollection()
     {
-        $this->setCollection(
-            Mage::getModel('stuntcoders_banner/banner')
-                ->getCollection()
-                ->addFieldToFilter('group_id', Mage::registry('current_banner_group')->getId())
-        );
+        if (Mage::registry('current_banner_group')) {
+            $collection = Mage::getModel('stuntcoders_banner/banner')->getCollection()
+                ->addFieldToFilter('group_id', Mage::registry('current_banner_group')->getId());
+
+            $this->setCollection($collection);
+        }
 
         return parent::_prepareCollection();
     }
 
+    /**
+     * @return Mage_Adminhtml_Block_Widget_Grid
+     */
     protected function _prepareColumns()
     {
         $this->addColumn('id', array(
