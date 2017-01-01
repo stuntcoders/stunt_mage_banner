@@ -50,7 +50,7 @@ class Stuntcoders_Banner_Adminhtml_BannerController extends Mage_Adminhtml_Contr
             try {
                 Mage::getModel('stuntcoders_banner/banner')->setId($id)->delete();
 
-                $this->_getSession()->addSuccess($this->__('Item was successfully deleted'));
+                $this->_getSession()->addSuccess($this->__('Banner was successfully deleted'));
                 $this->_redirect('*/*');
             } catch (Exception $e) {
                 $this->_getSession()->addError($e->getMessage());
