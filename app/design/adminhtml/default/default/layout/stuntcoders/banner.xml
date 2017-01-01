@@ -8,19 +8,19 @@
 
     <adminhtml_banner_new>
         <reference name="content">
-            <block type="stuntcoders_banner/adminhtml_new" name="banner.new" />
+            <block type="stuntcoders_banner/adminhtml_new" name="stuntcoders.banner.new" />
         </reference>
     </adminhtml_banner_new>
 
     <adminhtml_banner_group_index>
         <reference name="content">
-            <block type="stuntcoders_banner/adminhtml_group" name="banner.group.index" />
+            <block type="stuntcoders_banner/adminhtml_group_index" name="stuntcoders.banner.group.index" />
         </reference>
     </adminhtml_banner_group_index>
 
-    <adminhtml_banner_group_add>
+    <adminhtml_banner_group_new>
         <reference name="content">
-            <block type="stuntcoders_banner/adminhtml_groupForm" name="banner.group.add" />
+            <block type="stuntcoders_banner/adminhtml_group_new" name="stuntcoders.banner.group.new" />
         </reference>
-    </adminhtml_banner_group_add>
+    </adminhtml_banner_group_new>
 </layout>
