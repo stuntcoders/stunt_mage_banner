@@ -6,11 +6,11 @@
         </reference>
     </adminhtml_banner_index>
 
-    <adminhtml_banner_add>
+    <adminhtml_banner_new>
         <reference name="content">
             <block type="stuntcoders_banner/adminhtml_bannerForm" name="banner.add" />
         </reference>
-    </adminhtml_banner_add>
+    </adminhtml_banner_new>
 
     <adminhtml_banner_group_index>
         <reference name="content">

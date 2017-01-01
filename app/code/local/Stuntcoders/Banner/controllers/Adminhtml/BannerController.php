@@ -7,7 +7,7 @@ class Stuntcoders_Banner_Adminhtml_BannerController extends Mage_Adminhtml_Contr
         $this->_initAction()->renderLayout();
     }
 
-    public function addAction()
+    public function newAction()
     {
         $this->_initAction()->renderLayout();
     }
