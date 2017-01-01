@@ -6,8 +6,8 @@ class Stuntcoders_Banner_Block_Adminhtml_New_Form extends Mage_Adminhtml_Block_W
     {
         $form = new Varien_Data_Form(
             array(
-                'id' => 'banner_form',
-                'name' => 'banner_form',
+                'id' => 'edit_form',
+                'name' => 'edit_form',
                 'action' => $this->getUrl('*/*/save', array('id' => $this->getRequest()->getParam('id'))),
                 'method' => 'post',
                 'enctype' => 'multipart/form-data'
