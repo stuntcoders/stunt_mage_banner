@@ -1,0 +1,16 @@
+<script>
+    (function (grid) {
+        for (var i = 2; i < grid.rows.length; i++) {
+            Event.observe(grid.rows[i].select('.input-text')[0], 'keyup', updateGridInput);
+        }
+
+        function updateGridInput() {
+            var data = {};
+            for (var i = 2; i < grid.rows.length; i++) {
+                data[parseInt(grid.rows[i].cells[0].innerHTML)] = parseInt(grid.rows[i].select('.input-text')[0].value);
+            }
+
+            $('banner_positions').value = JSON.stringify(data);
+        }
+    }) ($('bannerGrid_table'));
+</script>

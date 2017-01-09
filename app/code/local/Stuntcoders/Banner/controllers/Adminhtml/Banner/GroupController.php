@@ -19,7 +19,7 @@ class Stuntcoders_Banner_Adminhtml_Banner_GroupController extends Mage_Adminhtml
         $this->_initAction()->renderLayout();
     }
 
-    public function addAction()
+    public function newAction()
     {
         $this->_initAction()->renderLayout();
     }
@@ -47,10 +47,25 @@ class Stuntcoders_Banner_Adminhtml_Banner_GroupController extends Mage_Adminhtml
                 }
 
                 $this->_getSession()->addSuccess($this->_getHelper()->__('Group successfully saved'));
-                $this->_redirect('*/*/add', array('id' => $bannerGroupModel->getId()));
+                $this->_redirect('*/*/new', array('id' => $bannerGroupModel->getId()));
             } catch (Exception $e) {
-                $this->_redirectReferer('*/*/');
                 $this->_getHelper()->addError($e->getMessage());
+                $this->_redirectReferer('*/*');
+            }
+        }
+    }
+
+    public function deleteAction()
+    {
+        if ($id = $this->getRequest()->getParam('id')) {
+            try {
+                Mage::getModel('stuntcoders_banner/banner_group')->setId($id)->delete();
+
+                $this->_getSession()->addSuccess($this->__('Banner group was successfully deleted'));
+                $this->_redirect('*/*');
+            } catch (Exception $e) {
+                $this->_getSession()->addError($e->getMessage());
+                $this->_redirectReferer();
             }
         }
     }

@@ -2,20 +2,9 @@
 <config>
     <modules>
         <Stuntcoders_Banner>
-            <version>1.2.4</version>
+            <version>2.0.0</version>
         </Stuntcoders_Banner>
     </modules>
-    <admin>
-        <routers>
-            <adminhtml>
-                <args>
-                    <modules>
-                        <Stuntcoders_Banner before="Mage_Adminhtml">Stuntcoders_Banner_Adminhtml</Stuntcoders_Banner>
-                    </modules>
-                </args>
-            </adminhtml>
-        </routers>
-    </admin>
     <global>
         <models>
             <stuntcoders_banner>
@@ -31,6 +20,9 @@
                     <banner_group>
                         <table>stuntcoders_banner_group</table>
                     </banner_group>
+                    <store>
+                        <table>stuntcoders_banner_store</table>
+                    </store>
                 </entities>
             </stuntcoders_banner_resource>
         </models>
@@ -50,16 +42,6 @@
                     <module>Stuntcoders_Banner</module>
                 </setup>
             </stuntcoders_banner_setup>
-            <banner_write>
-                <connection>
-                    <use>core_write</use>
-                </connection>
-            </banner_write>
-            <banner_read>
-                <connection>
-                    <use>core_read</use>
-                </connection>
-            </banner_read>
         </resources>
     </global>
     <adminhtml>
@@ -71,4 +53,15 @@
             </updates>
         </layout>
     </adminhtml>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <Stuntcoders_Banner before="Mage_Adminhtml">Stuntcoders_Banner_Adminhtml</Stuntcoders_Banner>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
 </config>

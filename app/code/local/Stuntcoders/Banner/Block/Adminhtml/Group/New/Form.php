@@ -1,14 +1,17 @@
 <?php
 
-class Stuntcoders_Banner_Block_Adminhtml_Group_Form extends Mage_Adminhtml_Block_Widget_Form
+class Stuntcoders_Banner_Block_Adminhtml_Group_New_Form extends Mage_Adminhtml_Block_Widget_Form
 {
+    /**
+     * @return Mage_Adminhtml_Block_Widget_Form
+     */
     protected function _prepareForm()
     {
         $form = new Varien_Data_Form(
             array(
-                'id' => 'banner_group_form',
-                'name' => 'banner_group_form',
-                'action' => $this->getUrl('*/banner_group/save', array('id' => $this->getRequest()->getParam('id'))),
+                'id' => 'edit_form',
+                'name' => 'edit_form',
+                'action' => $this->getUrl('*/*/save', array('id' => $this->getRequest()->getParam('id'))),
                 'method' => 'post',
             )
         );
@@ -38,7 +41,6 @@ class Stuntcoders_Banner_Block_Adminhtml_Group_Form extends Mage_Adminhtml_Block
         ));
 
         $fieldset->addField('banner_positions', 'hidden', array(
-            'required' => true,
             'name' => 'banner_positions',
         ));
 
@@ -46,6 +48,7 @@ class Stuntcoders_Banner_Block_Adminhtml_Group_Form extends Mage_Adminhtml_Block
 
         $form->setUseContainer(true);
         $this->setForm($form);
+
         return parent::_prepareForm();
     }
 }

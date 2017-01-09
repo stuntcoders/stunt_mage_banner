@@ -1,10 +1,10 @@
 <?php /** @var Stuntcoders_Banner_Block_Banner $this */ ?>
 <div class="banner-wrapper">
-    <a href="<?php echo $this->getUrl(); ?>" <?php echo $this->getOpenInNewTab() ?  'target="_blank"' : ''; ?>>
+    <a href="<?php echo $this->getBanner()->getUrl(); ?>" <?php echo $this->getBanner()->getOpenInNewTab() ?  'target="_blank"' : ''; ?>>
         <div class="banner">
-            <img src="<?php echo $this->getImage(); ?>" alt="<?php echo $this->getHeading(); ?>">
-            <p class="banenr-title"><?php echo $this->getHeading(); ?></p>
-            <p class="banner-content"><?php echo $this->getText(); ?></p>
+            <img src="<?php echo $this->getBanner()->getImage(); ?>" alt="<?php echo $this->getBanner()->getTitle(); ?>">
+            <p class="banenr-title"><?php echo $this->getBanner()->getTitle(); ?></p>
+            <p class="banner-content"><?php echo $this->getBanner()->getContent(); ?></p>
         </div>
     </a>
 </div>

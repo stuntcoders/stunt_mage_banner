@@ -4,7 +4,7 @@ class Stuntcoders_Banner_Model_Resource_Banner_Group extends Mage_Core_Model_Res
 {
     protected function _construct()
     {
-        $this->_init('stuntcoders_banner/banner_group', 'group_id');
+        $this->_init('stuntcoders_banner/banner_group', 'id');
     }
 
     public function getIdByCode($code)
@@ -18,15 +18,5 @@ class Stuntcoders_Banner_Model_Resource_Banner_Group extends Mage_Core_Model_Res
         $bind = array(':code' => (string) $code);
 
         return $adapter->fetchOne($select, $bind);
-    }
-
-    public function loadBanners($id)
-    {
-        $select = $this->_getReadAdapter()->select()
-            ->from($this->getTable('stuntcoders_banner/banner'))
-            ->where('group_id = ?', $id)
-            ->order('sort_order');
-
-        return $this->_getReadAdapter()->fetchAll($select);
     }
 }

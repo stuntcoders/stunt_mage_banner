@@ -8,31 +8,6 @@
  */
 class Stuntcoders_Banner_Block_Banner extends Mage_Core_Block_Template
 {
-    public function getUrl()
-    {
-        return $this->getBanner()->getUrl();
-    }
-
-    public function getImage()
-    {
-        return $this->getBanner()->getImage();
-    }
-
-    public function getText()
-    {
-        return $this->getBanner()->getText();
-    }
-
-    public function getHeading()
-    {
-        return $this->getBanner()->getHeading();
-    }
-
-    public function getOpenInNewTab()
-    {
-        return $this->getBanner()->getOpenInNewTab();
-    }
-
     protected function _toHtml()
     {
         $this->setBanner(Mage::getModel('stuntcoders_banner/banner'));

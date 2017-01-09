@@ -1,6 +1,15 @@
 # Change Log
 All notable changes to this project will be documented in this file. This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 2.0.0 - 2017-01-09
+### ADDED:
+- Banner store entity
+
+### CHANGED:
+- Refactor banner grid blocks
+- Refactor banner group blocks
+- Change primary fields to "id"
+
 ### 1.3.0 - 2016-12-28
 ### ADDED:
 - PHPDoc annotation

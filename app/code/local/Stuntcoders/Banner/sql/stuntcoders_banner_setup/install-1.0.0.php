@@ -1,33 +1,49 @@
 <?php
+/** @var Mage_Core_Model_Resource_Setup $this */
 
-$installer = $this;
+$this->startSetup();
 
-$installer->startSetup();
+$table = $this->getConnection()
+    ->newTable($this->getTable('stuntcoders_banner/banner'))
+    ->addColumn('id', Varien_Db_Ddl_Table::TYPE_INTEGER, null, array(
+        'identity' => true,
+        'unsigned' => true,
+        'nullable' => false,
+        'primary' => true,
+    ))->addColumn('group_id', Varien_Db_Ddl_Table::TYPE_INTEGER, null)
+    ->addColumn('code', Varien_Db_Ddl_Table::TYPE_TEXT, 255, array())
+    ->addColumn('url', Varien_Db_Ddl_Table::TYPE_TEXT, null, array())
+    ->addColumn('title', Varien_Db_Ddl_Table::TYPE_TEXT, null, array())
+    ->addColumn('content', Varien_Db_Ddl_Table::TYPE_TEXT, null, array())
+    ->addColumn('sort_order', Varien_Db_Ddl_Table::TYPE_INTEGER, null)
+    ->addColumn('open_in_new_tab', Varien_Db_Ddl_Table::TYPE_BOOLEAN, null)
+    ->addColumn('image', Varien_Db_Ddl_Table::TYPE_TEXT, null, array());
 
-$installer->run("
-DROP TABLE IF EXISTS `{$this->getTable('stuntcoders_banner/banner')}`;
-DROP TABLE IF EXISTS `{$this->getTable('stuntcoders_banner/banner_group')}`;
+$table->addIndex(
+    $this->getIdxName('stuntcoders_banner/banner', array('code'), Varien_Db_Adapter_Interface::INDEX_TYPE_UNIQUE),
+    array('code'),
+    Varien_Db_Adapter_Interface::INDEX_TYPE_UNIQUE
+);
 
-CREATE TABLE `{$this->getTable('stuntcoders_banner/banner')}` (
-    `banner_id` SMALLINT(6) NOT NULL AUTO_INCREMENT,
-    `group_id` SMALLINT(6),
-    `code` VARCHAR(255) DEFAULT '',
-    `url` VARCHAR(255) DEFAULT '',
-    `text` VARCHAR(255) DEFAULT '',
-    `image` VARCHAR(255) DEFAULT '',
-    `heading` VARCHAR(255) DEFAULT '',
-    PRIMARY KEY (`banner_id`),
-    UNIQUE KEY STUNTCODERS_BANNER_UNIQUE_CODE (`code`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Banner instance' ;
+$this->getConnection()->createTable($table);
 
-CREATE TABLE `{$this->getTable('stuntcoders_banner/banner_group')}` (
-    `group_id` smallint(6) NOT NULL AUTO_INCREMENT,
-    `code` varchar(255) NOT NULL,
-    `name` varchar(255) DEFAULT '',
-    PRIMARY KEY (`group_id`),
-    UNIQUE KEY `STUNTCODERS_BANNER_GROUP_UNIQUE_CODE` (`code`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Banner group instance' ;
+$table = $this->getConnection()
+    ->newTable($this->getTable('stuntcoders_banner/banner_group'))
+    ->addColumn('id', Varien_Db_Ddl_Table::TYPE_INTEGER, null, array(
+        'identity' => true,
+        'unsigned' => true,
+        'nullable' => false,
+        'primary' => true,
+    ))
+    ->addColumn('code', Varien_Db_Ddl_Table::TYPE_TEXT, 255, array())
+    ->addColumn('name', Varien_Db_Ddl_Table::TYPE_TEXT, null, array());
 
-");
+$table->addIndex(
+    $this->getIdxName('stuntcoders_banner/banner_group', array('code'), Varien_Db_Adapter_Interface::INDEX_TYPE_UNIQUE),
+    array('code'),
+    Varien_Db_Adapter_Interface::INDEX_TYPE_UNIQUE
+);
 
-$installer->endSetup();
+$this->getConnection()->createTable($table);
+
+$this->endSetup();
