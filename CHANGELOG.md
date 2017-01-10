@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to this project will be documented in this file. This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 2.0.1 - 2017-01-10
+### CHANGED:
+- Fix adding error message on banner group save
+- Update PHPDoc annotation
+
 ## 2.0.0 - 2017-01-09
 ### ADDED:
 - Banner store entity
