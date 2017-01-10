@@ -1,6 +1,7 @@
 <?php
 
 /**
+ * @method Stuntcoders_Banner_Model_Resource_Banner_Group _getResource()
  * @method string getName()
  * @method Stuntcoders_Banner_Model_Banner_Group setName(string $name)
  * @method string getCode()
