@@ -49,7 +49,7 @@ class Stuntcoders_Banner_Adminhtml_Banner_GroupController extends Mage_Adminhtml
                 $this->_getSession()->addSuccess($this->_getHelper()->__('Group successfully saved'));
                 $this->_redirect('*/*/new', array('id' => $bannerGroupModel->getId()));
             } catch (Exception $e) {
-                $this->_getHelper()->addError($e->getMessage());
+                $this->_getSession()->addError($e->getMessage());
                 $this->_redirectReferer('*/*');
             }
         }
